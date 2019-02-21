@@ -3053,8 +3053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112f0b471909a204c91fe5699454b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sludgeJudge: {fileID: 2150120747805627414}
-  mainTank: {fileID: 688804420}
+  sludgeJudge: {fileID: 1006438310}
   mainCam: {fileID: 0}
   sludgeType: 0
   coloredMats:
@@ -3065,19 +3064,6 @@ MonoBehaviour:
   - {r: 0.4528302, g: 0.34389463, b: 0.1986472, a: 1}
   - {r: 0.5943396, g: 0.48679784, b: 0.32800817, a: 1}
   sludgeOptions: 
-  sJDipTime: 3
-  sJSampleTime: 1.5
-  sJExamineTransTime: 2
-  sJDipPoint: {fileID: 1660611815}
-  sJSampledPoint: {fileID: 1912460409}
-  sJExaminePoint: {fileID: 915245620}
-  tankShrunkPoint: {fileID: 688811478}
-  sJStartPoint: {x: 0, y: 0, z: 0}
-  sJStartScale: {x: 0, y: 0, z: 0}
-  sJStartRot: {x: 0, y: 0, z: 0, w: 0}
-  tankStartPoint: {x: 0, y: 0, z: 0}
-  tankStartScale: {x: 0, y: 0, z: 0}
-  tankStartRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &677364454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3122,36 +3108,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4547417654894104726}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &688811477
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 688811478}
-  m_Layer: 0
-  m_Name: TankShrunkPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &688811478
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688811477}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1, z: -0.25}
-  m_LocalScale: {x: 0.006, y: 0.006, z: 0.006}
-  m_Children: []
-  m_Father: {fileID: 1111136881}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &777322089
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,36 +4221,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886024556}
   m_CullTransparentMesh: 0
---- !u!1 &915245619
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 915245620}
-  m_Layer: 0
-  m_Name: SludgeJudgeExmainePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &915245620
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915245619}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 7.74, y: 3.14, z: -0.045}
-  m_LocalScale: {x: 0.0105, y: 0.0105, z: 0.0035}
-  m_Children: []
-  m_Father: {fileID: 1111136881}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -180, y: 90, z: 90}
 --- !u!1 &935331351
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,7 +4505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1006438307
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4647,7 +4573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006438306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.262, y: 0.731, z: -0.045}
+  m_LocalPosition: {x: 0.7, y: 0.7, z: -0.2}
   m_LocalScale: {x: 0.025, y: 0.2, z: 0.025}
   m_Children:
   - {fileID: 1211634160}
@@ -4960,40 +4886,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038253694}
   m_CullTransparentMesh: 0
---- !u!1 &1111136880
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1111136881}
-  m_Layer: 0
-  m_Name: AnimationReferences
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1111136881
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111136880}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1660611815}
-  - {fileID: 1912460409}
-  - {fileID: 915245620}
-  - {fileID: 688811478}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1113750547
 GameObject:
   m_ObjectHideFlags: 0
@@ -5806,10 +5698,6 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 9b0f5f97d8d694e4fa645da578b7fb1d, type: 3}
       propertyPath: m_Name
       value: WaterDistortion
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9b0f5f97d8d694e4fa645da578b7fb1d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9b0f5f97d8d694e4fa645da578b7fb1d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7562,36 +7450,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!1 &1660611814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1660611815}
-  m_Layer: 0
-  m_Name: SludgeJudgeDipPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1660611815
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660611814}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.54, y: 1.13, z: -0.04}
-  m_LocalScale: {x: 0.003, y: 0.003, z: 0.001}
-  m_Children: []
-  m_Father: {fileID: 1111136881}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1673099620
 GameObject:
   m_ObjectHideFlags: 0
@@ -7861,7 +7719,6 @@ Transform:
   m_Children:
   - {fileID: 688804420}
   - {fileID: 1006438310}
-  - {fileID: 2150120747805627414}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8162,36 +8019,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866392954}
   m_CullTransparentMesh: 0
---- !u!1 &1912460408
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1912460409}
-  m_Layer: 0
-  m_Name: SludgeJudgeSampledPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1912460409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912460408}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.54, y: 7.43, z: -0.045}
-  m_LocalScale: {x: 0.003, y: 0.003, z: 0.001}
-  m_Children: []
-  m_Father: {fileID: 1111136881}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &2002674974
 GameObject:
   m_ObjectHideFlags: 0
@@ -8493,32 +8320,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120531835}
   m_CullTransparentMesh: 0
---- !u!1 &2150120747805263926 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2150120747805263926, guid: 606ba3cf80e833f43999d1f21d105e12,
-    type: 3}
-  m_PrefabInstance: {fileID: 7230673233896772974}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &2150120747805263927
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2150120747805263926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 19.9
-  m_Height: 502.1
-  m_Direction: 2
-  m_Center: {x: -0.0000002384186, y: 0.000004053119, z: 228.60008}
---- !u!4 &2150120747805627414 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-    type: 3}
-  m_PrefabInstance: {fileID: 7230673233896772974}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4547417654894104726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8613,87 +8414,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9791b61f60ecd442a55fea56ef3efa0, type: 3}
---- !u!1001 &7230673233896772974
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1785575261}
-    m_Modifications:
-    - target: {fileID: 2150120747805263926, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_Name
-      value: SludgeJudge
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.2645
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.619
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0444
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150120747805627414, guid: 606ba3cf80e833f43999d1f21d105e12,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.001
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 606ba3cf80e833f43999d1f21d105e12, type: 3}

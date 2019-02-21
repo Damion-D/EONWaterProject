@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.67866117, g: 0.7901916, b: 0.94712836, a: 1}
+  m_IndirectSpecularColor: {r: 1.1034362, g: 1.1023805, b: 1.1566744, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1428,6 +1428,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &412025391 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1338693837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &412025392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9088829680609656263, guid: 77faaa452c273184a96ee4945b2799d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1338693837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b5c56a9858e444a9bf7734a030f090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &425455978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,7 +2319,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1366194963}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &740992527
 MonoBehaviour:
@@ -2956,13 +2974,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1457257346}
-        m_MethodName: GoHome
+      - m_Target: {fileID: 412025392}
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2990,7 +3008,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5a69cc1893619574bad84ea517eb9615, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57648d64ce9e1604db37d0cd624c2346, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3491,7 +3509,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1366194963}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1055782905
 MonoBehaviour:
@@ -3987,6 +4005,80 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1338693837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1366194963}
+    m_Modifications:
+    - target: {fileID: 9088829680609656260, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_Name
+      value: MenuManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 314.4659
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 226.10757
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -139.13647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656262, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088829680609656263, guid: 77faaa452c273184a96ee4945b2799d9,
+        type: 3}
+      propertyPath: sceneNum
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77faaa452c273184a96ee4945b2799d9, type: 3}
 --- !u!1 &1343278254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,6 +4144,7 @@ Transform:
   m_LocalPosition: {x: -2.255293, y: -2.0403183, z: 5.9244432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 412025391}
   - {fileID: 1457257345}
   - {fileID: 1972432889}
   - {fileID: 1055782904}
@@ -4190,7 +4283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1366194963}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1457257346
 MonoBehaviour:
@@ -4233,7 +4326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b5c56a9858e444a9bf7734a030f090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNum: 0
+  sceneNum: 1
 --- !u!1 &1465718206
 GameObject:
   m_ObjectHideFlags: 0
@@ -5711,7 +5804,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1366194963}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1972432890
 MonoBehaviour:

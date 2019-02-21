@@ -82,7 +82,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         if(Input.GetKeyDown(KeyCode.S))
         {
-            RaycastHit hit = GlobalFunctions.DetectTouch();
+            RaycastHit hit = GlobalFunctions.DetectTouch(this);
             if(hit.transform != null)
             {
                 Debug.Log(hit.transform.name);
@@ -111,7 +111,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     {
         while(true)
         {
-            if (GlobalFunctions.DetectTouch().transform == sludgeJudge)
+            //if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
+            GlobalFunctions.DetectTouch(this, new Vector2(100, 100));
+            if (GlobalFunctions.swipeDirection == Vector2.down)
             {
                 Debug.Log("Sludge judge tapped");
                 StartCoroutine("SludgeJudgeDip");
@@ -125,7 +127,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         while (true)
         {
-            if (GlobalFunctions.DetectTouch().transform == sludgeJudge)
+            if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
             {
                 Debug.Log("Sludge judge tapped");
                 break;
@@ -170,7 +172,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
 
         timeStart = Time.time;
         while (true)

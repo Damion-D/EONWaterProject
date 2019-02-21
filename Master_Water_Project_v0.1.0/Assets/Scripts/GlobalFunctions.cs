@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class GlobalFunctions : MonoBehaviour
 {
-    static Camera mainCam;
+    public static Camera mainCam;
     public static Vector2 swipeDirection;
 
-    private void Awake()
+    private void Start()
     {
         mainCam = Camera.main;
     }
 
     //Takes a touch on the screen, and converts it into a raaycast into the scene
-    public static RaycastHit DetectTouch()
+    public static RaycastHit DetectTouch(MonoBehaviour calledFrom, Vector2 swipeDistances)
     {
+        mainCam = Camera.main;
         RaycastHit hit = new RaycastHit();
+
+        //Uses mouse input if in the editor
         if (Application.isEditor)
         {
             if (Input.GetMouseButtonDown(0))
@@ -31,10 +34,20 @@ public class GlobalFunctions : MonoBehaviour
             Physics.Raycast(mainCam.ScreenPointToRay(touch.position), out hit);
         }
 
+        //StartCoroutine requires a MonoBehaviour to run from, but cannot use this MonoBehaviour script since this function is static, which is why a MonoBehaviour is passed into this function
+        if (hit.transform != null)
+            calledFrom.StartCoroutine(SwipeDetect(swipeDistances));
+
         return hit;
     }
 
-    static IEnumerator SwipeDetect()
+    public static RaycastHit DetectTouch(MonoBehaviour calledFrom)
+    {
+        return DetectTouch(calledFrom, Vector2.zero);
+    }
+
+
+    public static IEnumerator SwipeDetect(Vector2 swipeDistances)
     {
         float time = Time.time;
         float currentTime = 0;
@@ -43,6 +56,7 @@ public class GlobalFunctions : MonoBehaviour
         Vector2 currentPos;
         Vector2 difference;
 
+        //Resets Swipe Direction to zero to avoid accidental detection of the last recorded swipe
         swipeDirection = Vector2.zero;
 
         if(Application.isEditor)
@@ -74,11 +88,13 @@ public class GlobalFunctions : MonoBehaviour
 
             difference = currentPos - startPos;
 
-            if(Mathf.Abs(difference.x) > 25)
+            Debug.Log("Difference: " + difference);
+
+            if(Mathf.Abs(difference.x) > Mathf.Abs(swipeDistances.x))
             {
                 swipeDirection = new Vector2(Mathf.Sign(difference.x), 0);
             }
-            else if(Mathf.Abs(difference.y) > 25)
+            else if(Mathf.Abs(difference.y) > Mathf.Abs(swipeDistances.y))
             {
                 swipeDirection = new Vector2(0, Mathf.Sign(difference.y));
             }

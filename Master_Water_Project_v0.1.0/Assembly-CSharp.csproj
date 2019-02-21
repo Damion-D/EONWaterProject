@@ -83,7 +83,6 @@
     <Compile Include="Assets\Scripts\FlowManager.cs" />
     <Compile Include="Assets\Scripts\FlowSpeed.cs" />
     <Compile Include="Assets\Scripts\GaugeHighlighter.cs" />
-    <Compile Include="Assets\Scripts\GlobalFunctions.cs" />
     <Compile Include="Assets\Scripts\LabelKeeper.cs" />
     <Compile Include="Assets\Scripts\LOTO\LOTOPumpStory.cs" />
     <Compile Include="Assets\Scripts\LOTO\LOTOValveStory.cs" />
@@ -97,6 +96,7 @@
     <Compile Include="Assets\Scripts\MySceneLoader.cs" />
     <Compile Include="Assets\Scripts\PartID.cs" />
     <Compile Include="Assets\Scripts\PPE\PPEStory.cs" />
+    <Compile Include="Assets\Scripts\QRLink.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\SludgeJudgeScenario.cs" />
     <Compile Include="Assets\Scripts\TouchActivatedObject.cs" />
@@ -132,19 +132,19 @@
     <None Include="Assets\Ultra Skybox Fog\Textures\Readme.txt" />
     <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -351,13 +351,13 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/student/Documents/GitHub/WaterProject/Master_Water_Project_v0.1.0/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/student/Documents/WaterProject-master/WaterProject-master/Master_Water_Project_v0.1.0/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

@@ -74,6 +74,12 @@ public class MenuManager : MonoBehaviour {
 
     }
 
+    //dumb way to make the first button of a 3 selection scene scroll to the right location.
+    public void NavButton(float stepNum)
+    {
+        targetVal = stepSize * stepNum;
+    }
+
     public void NavOut(float stepNum) {
         navOn = false;
         targetVal = stepSize*stepNum;

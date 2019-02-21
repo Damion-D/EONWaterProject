@@ -1498,7 +1498,7 @@ GameObject:
   - component: {fileID: 325753713}
   - component: {fileID: 325753712}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Sludge Assessment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1556,7 +1556,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Self Assesment
+  m_Text: Sludge Assessment
 --- !u!222 &325753713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3341,7 +3341,7 @@ GameObject:
   - component: {fileID: 815649806}
   - component: {fileID: 815649805}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Sludge Sampling Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3399,7 +3399,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Test
+  m_Text: Sludge Sampling Test
 --- !u!222 &815649806
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6707,7 +6707,7 @@ GameObject:
   - component: {fileID: 2004802292}
   - component: {fileID: 2004802291}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Sludge Process
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6765,7 +6765,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Process
+  m_Text: Sludge Process
 --- !u!222 &2004802292
 CanvasRenderer:
   m_ObjectHideFlags: 0

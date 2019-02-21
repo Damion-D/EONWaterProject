@@ -6675,7 +6675,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Learn how to work with chloramine to disinfect waste water
+  m_Text: Learn how to work with Chloramine to disinfect waste water
 --- !u!222 &1624447715
 CanvasRenderer:
   m_ObjectHideFlags: 0

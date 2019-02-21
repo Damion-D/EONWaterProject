@@ -124,7 +124,7 @@ public class PPEStory : MonoBehaviour, ITrackableEventHandler {
                         correctGearName = "Glasses";
                         objectSelected = true;
                         audioManager.PlaySound("BootsAnswer", 1.0f, true, 2);
-                        StartCoroutine("BootsFade");
+                        
                         
                         
                         
@@ -151,7 +151,7 @@ public class PPEStory : MonoBehaviour, ITrackableEventHandler {
                         objectSelected = true;
                         audioManager.PlaySound("GlassesAnswer", 1.0f, true, 2);
                         correctGearName = "HardHat";
-                        StartCoroutine("GlassesFade");
+                        //StartCoroutine("GlassesFade");
                     }
 
                     if(correctGearName != "Glasses"&&objectSelected==false)

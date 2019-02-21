@@ -9,7 +9,8 @@ public class FindAllScripts : MonoBehaviour
     [Space]
     [Space]
     [Space]
-    [SerializeField] private List<MonoBehaviour> allScripts;
+    [SerializeField]
+    private List<MonoBehaviour> allScripts;
 
     // Start is called before the first frame update
     void Start()

@@ -3,23 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Inlet
-  - Outlet
-  - Bearing
-  - ElectricMotor
-  - MechanicalSeal
-  - Shaft
-  - ShaftHousing
-  - Impeller
-  - ImpellerHousing
-  - PlayButton
-  - DontTurnOff
-  - MotorCapsule
-  - BearingCapsule
-  - SealCapsule
-  - Boots
-  - PermanentUI
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -29,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - 3DGUI
+  - 
+  - 
   - 
   - 
   - 

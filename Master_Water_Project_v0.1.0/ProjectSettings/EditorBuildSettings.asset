@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: a95f5e07a0ef13d4eb35bf776d5ce25a
+  - enabled: 1
+    path: Assets/Scenes/SludgeMainMenu.unity
+    guid: d20e774562c4eb34d8021b237983d469
+  - enabled: 1
+    path: Assets/Scenes/ARSetup.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Assembly.unity
+    guid: ad9011826c539f7409ece545013697f5
+  - enabled: 1
+    path: Assets/Scenes/NormalOperation.unity
+    guid: 999d1a8fb305cf348b6a58d41c7d519e
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/LowSuction.unity
+    guid: 4d496dfebef7eae439c75dc5333bfe8e
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/HighDischarge.unity
+    guid: e6038e29cd961bb43b59ab0dc67641b9
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Recirculation.unity
+    guid: ad9eb9b6a16fdd74a88a3f17233f86f9
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Explore.unity
+    guid: 45d7fbcd1a3b0d843b332e328719ee2e
+  - enabled: 1
+    path: Assets/Scenes/MaintenancePumpBasics.unity
+    guid: d703a2ead13c1c046aaa966a4dfd01c0
+  - enabled: 1
+    path: Assets/Scenes/ChloraminMainMenu.unity
+    guid: 709be647a8e6e0c47996f860f758228a
+  - enabled: 1
+    path: Assets/Scenes/MaintScenarios.unity
+    guid: 19f422e2f3ff05d419c7dd4d4dc58169
+  - enabled: 1
+    path: Assets/Scenes/O2MainMenu.unity
+    guid: 7269daaa9e3de7b4aa0f4b624514c5c7
+  - enabled: 1
+    path: Assets/Scenes/PPEScene.unity
+    guid: 079563dbbc85b124c8c6125aa140e3f3
+  - enabled: 1
+    path: Assets/Scenes/LOTOScene.unity
+    guid: 78a8ddcbc3ead124abe6225e473ce1d0
+  - enabled: 1
+    path: Assets/Scenes/LOTOPumpScene.unity
+    guid: c8eedc2776b4adc4781a77d31fd921c2
+  - enabled: 1
+    path: Assets/Scenes/LOTOValveScene.unity
+    guid: 1e63ee3ee0c2b4747b0a95076237b99a
+  m_configObjects: {}

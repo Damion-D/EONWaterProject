@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Inlet
+  - Outlet
+  - Bearing
+  - ElectricMotor
+  - MechanicalSeal
+  - Shaft
+  - ShaftHousing
+  - Impeller
+  - ImpellerHousing
+  - PlayButton
+  - DontTurnOff
+  - MotorCapsule
+  - BearingCapsule
+  - SealCapsule
+  - Boots
+  - PermanentUI
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - 3DGUI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

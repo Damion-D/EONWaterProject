@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Master_Water_Project_v0.0.1", "Assembly-CSharp.csproj", "{93CEDCB7-3F09-B80F-136C-34166FBD5D22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Master_Water_Project_v0.0.1", "Assembly-CSharp-Editor.csproj", "{02FC6235-9119-9EF6-11E1-B0849BA1B048}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93CEDCB7-3F09-B80F-136C-34166FBD5D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93CEDCB7-3F09-B80F-136C-34166FBD5D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93CEDCB7-3F09-B80F-136C-34166FBD5D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93CEDCB7-3F09-B80F-136C-34166FBD5D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02FC6235-9119-9EF6-11E1-B0849BA1B048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02FC6235-9119-9EF6-11E1-B0849BA1B048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02FC6235-9119-9EF6-11E1-B0849BA1B048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02FC6235-9119-9EF6-11E1-B0849BA1B048}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

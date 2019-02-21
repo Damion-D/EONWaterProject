@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: ebea01309c4ebea4693ee3a826a4af07
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: CentrifugalPump_Bearing
+    100002: CentrifugalPump_Coupling_001
+    100004: CentrifugalPump_Coupling_002
+    100006: CentrifugalPump_ElectricMotor
+    100008: CentrifugalPump_FloorMount
+    100010: CentrifugalPump_MechanicalSeal
+    100012: CentrifugalPump_Shaft
+    100014: CentrifugalPump_Shaft_Ring
+    100016: CentrifugalPump_ShaftHousing
+    100018: DischargePiping
+    100020: FrontSuctionCover
+    100022: FrontSuctionScrews
+    100024: Impeller
+    100026: ImpellerHousing
+    100028: InletValve
+    100030: IntakePiping
+    100032: IsoValve_001
+    100034: IsoValve_002
+    100036: OutletValve
+    100038: PressureGauge_001
+    100040: PressureGauge_002
+    100042: //RootNode
+    100044: RearCoverScrews
+    100046: RearSuctionCover
+    400000: CentrifugalPump_Bearing
+    400002: CentrifugalPump_Coupling_001
+    400004: CentrifugalPump_Coupling_002
+    400006: CentrifugalPump_ElectricMotor
+    400008: CentrifugalPump_FloorMount
+    400010: CentrifugalPump_MechanicalSeal
+    400012: CentrifugalPump_Shaft
+    400014: CentrifugalPump_Shaft_Ring
+    400016: CentrifugalPump_ShaftHousing
+    400018: DischargePiping
+    400020: FrontSuctionCover
+    400022: FrontSuctionScrews
+    400024: Impeller
+    400026: ImpellerHousing
+    400028: InletValve
+    400030: IntakePiping
+    400032: IsoValve_001
+    400034: IsoValve_002
+    400036: OutletValve
+    400038: PressureGauge_001
+    400040: PressureGauge_002
+    400042: //RootNode
+    400044: RearCoverScrews
+    400046: RearSuctionCover
+    2100000: 08 - Default
+    2100002: Metal_Mat
+    2100004: 07 - Default
+    2100006: 02 - Default
+    2100008: 19 - Default
+    2100010: 09 - Default
+    2100012: No Name
+    2300000: CentrifugalPump_Bearing
+    2300002: CentrifugalPump_Coupling_001
+    2300004: CentrifugalPump_Coupling_002
+    2300006: CentrifugalPump_ElectricMotor
+    2300008: CentrifugalPump_FloorMount
+    2300010: CentrifugalPump_MechanicalSeal
+    2300012: CentrifugalPump_Shaft
+    2300014: CentrifugalPump_Shaft_Ring
+    2300016: CentrifugalPump_ShaftHousing
+    2300018: DischargePiping
+    2300020: FrontSuctionCover
+    2300022: FrontSuctionScrews
+    2300024: Impeller
+    2300026: ImpellerHousing
+    2300028: InletValve
+    2300030: IntakePiping
+    2300032: IsoValve_001
+    2300034: IsoValve_002
+    2300036: OutletValve
+    2300038: PressureGauge_001
+    2300040: PressureGauge_002
+    2300042: RearCoverScrews
+    2300044: RearSuctionCover
+    3300000: CentrifugalPump_Bearing
+    3300002: CentrifugalPump_Coupling_001
+    3300004: CentrifugalPump_Coupling_002
+    3300006: CentrifugalPump_ElectricMotor
+    3300008: CentrifugalPump_FloorMount
+    3300010: CentrifugalPump_MechanicalSeal
+    3300012: CentrifugalPump_Shaft
+    3300014: CentrifugalPump_Shaft_Ring
+    3300016: CentrifugalPump_ShaftHousing
+    3300018: DischargePiping
+    3300020: FrontSuctionCover
+    3300022: FrontSuctionScrews
+    3300024: Impeller
+    3300026: ImpellerHousing
+    3300028: InletValve
+    3300030: IntakePiping
+    3300032: IsoValve_001
+    3300034: IsoValve_002
+    3300036: OutletValve
+    3300038: PressureGauge_001
+    3300040: PressureGauge_002
+    3300042: RearCoverScrews
+    3300044: RearSuctionCover
+    4300000: CentrifugalPump_Shaft
+    4300002: CentrifugalPump_MechanicalSeal
+    4300004: CentrifugalPump_FloorMount
+    4300006: CentrifugalPump_Coupling_001
+    4300008: CentrifugalPump_Coupling_002
+    4300010: CentrifugalPump_ShaftHousing
+    4300012: CentrifugalPump_Bearing
+    4300014: CentrifugalPump_ElectricMotor
+    4300016: ImpellerHousing
+    4300018: RearSuctionCover
+    4300020: FrontSuctionCover
+    4300022: Impeller
+    4300024: CentrifugalPump_Shaft_Ring
+    4300026: RearCoverScrews
+    4300028: FrontSuctionScrews
+    4300030: IsoValve_001
+    4300032: PressureGauge_001
+    4300034: IntakePiping
+    4300036: IsoValve_002
+    4300038: PressureGauge_002
+    4300040: DischargePiping
+    4300042: OutletValve
+    4300044: InletValve
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15
+    secondaryUVHardAngle: 35
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

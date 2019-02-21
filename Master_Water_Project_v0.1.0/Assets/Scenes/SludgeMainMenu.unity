@@ -9242,7 +9242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Practice abnormal pump operation in three different scenarios
 --- !u!222 &2090065955
 CanvasRenderer:
   m_ObjectHideFlags: 0

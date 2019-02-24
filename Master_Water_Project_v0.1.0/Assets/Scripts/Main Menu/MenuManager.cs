@@ -54,6 +54,7 @@ public class MenuManager : MonoBehaviour {
             {
                 if (scrollNav.value >= scrollBack.size * i && scrollNav.value < scrollBack.size * (i + 1))
                 {
+                    
                     targetVal = stepSize * i;
                     
                 }
@@ -65,9 +66,13 @@ public class MenuManager : MonoBehaviour {
             float d = (difference > 0) ? 1 : -1;
             scrollBack.value = scrollBack.value + (d * speed * Time.deltaTime);
 
+            
+
             if (Mathf.Abs(difference) < .01)
             {
                 scrollBack.value = targetVal;
+
+              
 
             }
         }
@@ -82,8 +87,9 @@ public class MenuManager : MonoBehaviour {
 
     public void NavOut(float stepNum) {
         navOn = false;
-        targetVal = stepSize*stepNum;
+        targetVal = stepSize * stepNum;
         anim.clip = anim["NavigationOut"].clip;
+       // Debug.Log("TESTING");
         anim.Play();
     }
 

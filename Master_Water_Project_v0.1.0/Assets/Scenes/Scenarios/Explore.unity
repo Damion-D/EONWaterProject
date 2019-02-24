@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: f8aac821b91fe06469e001f84df2a0db, type: 3}
   m_Sun: {fileID: 1707349571}
-  m_IndirectSpecularColor: {r: 1.1034362, g: 1.1023805, b: 1.1566744, a: 1}
+  m_IndirectSpecularColor: {r: 1.0857624, g: 1.08846, b: 1.139947, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1311,7 +1311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &220237220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6258,7 +6258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7934237, y: 0.9031276}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1212477597
@@ -7106,6 +7106,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 199808967367047612, guid: 8fc985a4b98977e40955a282b820b77a,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 198700471436809956, guid: 8fc985a4b98977e40955a282b820b77a,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 1.35
+      objectReference: {fileID: 0}
     - target: {fileID: 1436100573782884, guid: 8fc985a4b98977e40955a282b820b77a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -7206,16 +7216,6 @@ PrefabInstance:
     - target: {fileID: 1727569806116936, guid: 8fc985a4b98977e40955a282b820b77a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198700471436809956, guid: 8fc985a4b98977e40955a282b820b77a,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 1.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 199808967367047612, guid: 8fc985a4b98977e40955a282b820b77a,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fc985a4b98977e40955a282b820b77a, type: 3}
@@ -9203,7 +9203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7934237, y: 0.9031276}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1647491590
@@ -10131,7 +10131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2002674975
 RectTransform:
   m_ObjectHideFlags: 0

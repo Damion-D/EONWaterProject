@@ -1,40 +1,53 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Unlit/YellowEffectRing"
 {
 	Properties
 	{
-
-		_Color("Ring Color", Color) = (1,1,0,0.75);
-	_Speed("Animation Speed", Float) = 1;
+		_Color("Ring Color", Color) = (1,1,0,0.75)
+		_Speed("Animation Speed", Float) = 1
 	}
 		SubShader
 	{
-	   Pass {
-				CGPROGRAM
-				#pragma vertex vert
-				#pragma fragment frag
+		Tags
+		{
+			"Queue" = "Transparent"
+		}
 
-				struct VertInput {
-					float4 pos : POSITION;
-				};
 
-				struct VertOutput {
-					float4 post : SV_POSITION;
-				};
+		   Pass {
+		Blend SrcAlpha OneMinusSrcAlpha
+		Zwrite off
+		CGPROGRAM
 
-				VertOutput vert(VertInput input)
-				{
-					VertOutput o;
-					o.pos = UnityObjectToClipPos(input.pos);
-					return o;
-				}
+		#pragma vertex vert             
+		#pragma fragment frag
 
-				float4 frag(VertexOutput output) : COLOR
-				{
-					 return (_Color.r, _Color.g, _Color.b, sin(_Time * _Speed) * _Color.a);
-				}
-					ENDCG
-			};
+		struct vertInput {
+			float4 pos : POSITION;
+		};
+
+		struct vertOutput {
+			float4 pos : SV_POSITION;
+		};
+
+		vertOutput vert(vertInput input) {
+			vertOutput o;
+			o.pos = UnityObjectToClipPos(input.pos);
+			return o;
+		}
+
+		float4 _Color;
+		float _Speed;
+
+		float4 frag(vertOutput output) : COLOR {
+			float4 color = _Color;
+			color.a = sin(_Time.y * _Speed) * _Color.a;
+			return color;
+		}
+		ENDCG
+	}
     }
 }

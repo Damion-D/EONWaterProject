@@ -46,6 +46,29 @@ public class GlobalFunctions : MonoBehaviour
         return DetectTouch(calledFrom, Vector2.zero);
     }
 
+    public static RaycastHit DetectConstantTouch()
+    {
+        mainCam = Camera.main;
+        RaycastHit hit = new RaycastHit();
+
+        //Uses mouse input if in the editor
+        if (Application.isEditor)
+        {
+            if (Input.GetMouseButton(0))
+                Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit);
+        }
+        else
+        {
+            //Checks to see if there are any current touches, which avoids errors from Input.GetTouch
+            if (Input.touchCount < 1)
+                return new RaycastHit();
+
+            Touch touch = Input.GetTouch(0);
+            Physics.Raycast(mainCam.ScreenPointToRay(touch.position), out hit);
+        }
+
+        return hit;
+    }
 
     public static IEnumerator SwipeDetect(Vector2 swipeDistances)
     {
@@ -101,6 +124,6 @@ public class GlobalFunctions : MonoBehaviour
 
             yield return null;
         }
-        while (currentTime < 1);
+        while (currentTime < 0.5f);
     }
 }

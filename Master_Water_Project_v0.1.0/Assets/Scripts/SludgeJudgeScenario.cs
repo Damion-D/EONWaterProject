@@ -13,6 +13,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [Header("Object References")]
     [SerializeField] Transform sludgeJudge;
     [SerializeField] Transform mainTank;
+    [SerializeField] Transform insertionPoint;
+    [SerializeField] Transform tankWaterTop;
+    [SerializeField] Transform indicator;
 
     [Space]
 
@@ -33,6 +36,10 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] float sJDipTime;
     [SerializeField] float sJSampleTime;
     [SerializeField] float sJExamineTransTime;
+    [SerializeField] float sJReturnDelay;
+
+    [Header("Misc Values")]
+    [SerializeField] float insertionDistance;
 
     [Header("Position Object References")]
     [SerializeField] Transform sJDipPoint;
@@ -112,18 +119,44 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         while(true)
         {
             //if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
+
+            RaycastHit hit = GlobalFunctions.DetectConstantTouch();
+            if(hit.transform != null)
+            {
+                if (hit.transform == tankWaterTop)
+                {
+                    sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
+                }
+            }
+            else if(Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(insertionPoint.position.x, insertionPoint.position.z)) < insertionDistance)
+            {
+                sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
+                sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
+                sJStartPoint = sludgeJudge.position;
+                indicator.gameObject.SetActive(false);
+                break;
+            }
+
+            yield return null;
+        }
+
+        Debug.Log("Reached Dip Point");
+
+        while (true)
+        {
+            //if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
+           
             GlobalFunctions.DetectTouch(this, new Vector2(100, 100));
             if (GlobalFunctions.swipeDirection == Vector2.down)
             {
-                Debug.Log("Sludge judge tapped");
+                Debug.Log("Sludge judge swiped");
                 StartCoroutine("SludgeJudgeDip");
                 break;
             }
             yield return null;
         }
 
-        yield return new WaitForSeconds(sJDipTime + sJSampleTime + sJExamineTransTime + 1);
-
+        yield return new WaitForSeconds(sJDipTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
 
         while (true)
         {
@@ -155,7 +188,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
 
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(10f);
 
         timeStart = Time.time;
         while (true)
@@ -195,6 +228,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
     }
     
+
+
+
 
     //Sets a Vector3 to the position of an object at the start
     void SetStartPositions()

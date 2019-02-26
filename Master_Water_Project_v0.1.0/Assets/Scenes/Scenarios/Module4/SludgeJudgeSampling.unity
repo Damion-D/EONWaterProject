@@ -953,15 +953,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.166989
+      value: 0.472
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.4230924
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.0933261
+      value: -0.343
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_LocalRotation.x
@@ -994,6 +994,18 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3116,6 +3128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sludgeJudge: {fileID: 2150120747805627414}
   mainTank: {fileID: 688804420}
+  insertionPoint: {fileID: 1031555360}
+  tankWaterTop: {fileID: 39458355}
+  indicator: {fileID: 1796878650}
   mainCam: {fileID: 0}
   sludgeType: 0
   coloredMats:
@@ -3126,9 +3141,10 @@ MonoBehaviour:
   - {r: 0.4528302, g: 0.34389463, b: 0.1986472, a: 1}
   - {r: 0.5943396, g: 0.48679784, b: 0.32800817, a: 1}
   sludgeOptions: 
-  sJDipTime: 8
+  sJDipTime: 4
   sJSampleTime: 1.5
   sJExamineTransTime: 2
+  insertionDistance: 0.5
   sJDipPoint: {fileID: 1660611815}
   sJSampledPoint: {fileID: 1912460409}
   sJExaminePoint: {fileID: 915245620}
@@ -4584,6 +4600,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963254896}
   m_CullTransparentMesh: 0
+--- !u!1 &975043949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a790209371e01ea45a703144525896cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 39458354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &975043950
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975043949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: a790209371e01ea45a703144525896cc, type: 3}
 --- !u!1 &981391378
 GameObject:
   m_ObjectHideFlags: 0
@@ -4821,12 +4857,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031555359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6155368, y: 5.7223673, z: 0.1457448}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1796878650}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038143433
 GameObject:
@@ -7890,6 +7926,12 @@ MonoBehaviour:
   mImageTargetType: 0
   mWidth: 10
   mHeight: 10
+--- !u!4 &1796878650 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18,
+    type: 3}
+  m_PrefabInstance: {fileID: 207603711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1815826952
 GameObject:
   m_ObjectHideFlags: 0

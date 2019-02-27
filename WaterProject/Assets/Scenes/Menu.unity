@@ -425,7 +425,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf18ab494a3dade44b6ee0681434f4a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 848ae9b1f4d47c14e81940e2b7d3c079, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1083,7 +1083,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Module
+  m_text: Module 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1152,10 +1152,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 796492644}
-    characterCount: 6
+    characterCount: 8
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -1325,7 +1325,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Title
+  m_text: Chloramination
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 843192251}
-    characterCount: 5
+    characterCount: 14
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -1545,21 +1545,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapterTitles:
-  - YEET
-  - YEETv2
-  - YEETV3
-  - YEETV4
+  - Process
+  - Self-Assesment
+  - Test
   chapterSummaries:
-  - yaYEET
-  - yaYEET
-  - yaYEET
-  - yaYEET
+  - Learn the process
+  - Review your knowledge
+  - Test your knowledge
   chapterSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  chapterSceneNums: 00000000000000000000000000000000
+  - {fileID: 21300000, guid: 0fdcb16fa6dc4214a81fed6e391da6f4, type: 3}
+  - {fileID: 21300000, guid: e3728c6d7ef6c564fbda6e6297fa95da, type: 3}
+  - {fileID: 21300000, guid: 45bb4f4b1a30af24287c2f574d0a9cc0, type: 3}
+  chapterSceneNums: 0000000002000000
 --- !u!222 &855986499
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1714,7 +1711,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterTitles: []
   chapterSummaries: []
-  chapterSprites: []
+  chapterSprites:
+  - {fileID: 21300000, guid: 848ae9b1f4d47c14e81940e2b7d3c079, type: 3}
+  - {fileID: 21300000, guid: 848ae9b1f4d47c14e81940e2b7d3c079, type: 3}
+  - {fileID: 21300000, guid: 848ae9b1f4d47c14e81940e2b7d3c079, type: 3}
   chapterSceneNums: 
 --- !u!1 &916687658
 GameObject:
@@ -1827,8 +1827,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5a69cc1893619574bad84ea517eb9615, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1901,7 +1901,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf18ab494a3dade44b6ee0681434f4a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd14835ec53679d44aca414064794531, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2135,7 +2135,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf18ab494a3dade44b6ee0681434f4a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fdcb16fa6dc4214a81fed6e391da6f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2209,7 +2209,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Title
+  m_text: Sludge Judge
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2278,10 +2278,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1230005496}
-    characterCount: 5
+    characterCount: 12
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2586,12 +2586,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapterTitles:
-  - yoot
+  - Process
+  - 'Self-Assesment '
+  - Test
   chapterSummaries:
-  - 
+  - Learn the Chloramination Process
+  - 'Review your knowledge '
+  - Test your knowledge
   chapterSprites:
-  - {fileID: 0}
-  chapterSceneNums: 00000000
+  - {fileID: 21300000, guid: 848ae9b1f4d47c14e81940e2b7d3c079, type: 3}
+  - {fileID: 21300000, guid: e3728c6d7ef6c564fbda6e6297fa95da, type: 3}
+  - {fileID: 21300000, guid: 45bb4f4b1a30af24287c2f574d0a9cc0, type: 3}
+  chapterSceneNums: 01000000
 --- !u!222 &1409647020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2657,7 +2663,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Module
+  m_text: Module 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2726,10 +2732,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1513266358}
-    characterCount: 6
+    characterCount: 8
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2817,7 +2823,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Summary
+  m_text: Learn how to use pH and Dissolved O2 meters and what can be learned from
+    the results
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2845,12 +2852,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
+  m_fontSize: 18.65
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
@@ -2886,12 +2893,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1570138590}
-    characterCount: 7
+    characterCount: 84
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 16
+    wordCount: 17
     linkCount: 0
-    lineCount: 1
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -2977,7 +2984,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Title
+  m_text: ph and O2 and pH Meters
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3005,10 +3012,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
+  m_fontSize: 28.1
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3046,10 +3053,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1677161451}
-    characterCount: 5
+    characterCount: 23
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 5
+    wordCount: 6
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -3445,7 +3452,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf18ab494a3dade44b6ee0681434f4a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b897b2820a7bf8d4aa272968b1ab6d3d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3519,7 +3526,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Summary
+  m_text: 'Learn the process of
+
+    Chloramination'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3588,12 +3597,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1847882908}
-    characterCount: 7
+    characterCount: 35
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -3679,7 +3688,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf18ab494a3dade44b6ee0681434f4a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fdcb16fa6dc4214a81fed6e391da6f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4014,7 +4023,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf18ab494a3dade44b6ee0681434f4a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 848ae9b1f4d47c14e81940e2b7d3c079, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4058,7 +4067,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991014891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 920427252}
@@ -4148,14 +4157,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapterTitles:
-  - 
-  - 
+  - Process
+  - Self Assessment
+  - Test
   chapterSummaries:
-  - 
-  - 
+  - Learn about the process of O2 and ph Meters and interpreting the results
+  - Review your knowledge
+  - Test your knowledge
   chapterSprites:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: bd14835ec53679d44aca414064794531, type: 3}
+  - {fileID: 21300000, guid: e3728c6d7ef6c564fbda6e6297fa95da, type: 3}
+  - {fileID: 21300000, guid: 45bb4f4b1a30af24287c2f574d0a9cc0, type: 3}
   chapterSceneNums: 0000000000000000
 --- !u!222 &1991014895
 CanvasRenderer:

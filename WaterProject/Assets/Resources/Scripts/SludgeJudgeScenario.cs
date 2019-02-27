@@ -17,6 +17,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] Transform insertionPoint;
     [SerializeField] Transform tankWaterTop;
     [SerializeField] Transform indicator;
+    [SerializeField] Transform tankWallFlashing;
 
     [Space]
 
@@ -39,9 +40,11 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     [Header("Animation Times")]
     [SerializeField] float sJDipTime;
+    [SerializeField] float sampleDialogeTime;
     [SerializeField] float sJSampleTime;
     [SerializeField] float sJExamineTransTime;
     [SerializeField] float sJReturnDelay;
+    [SerializeField] float effectAppearDelay;
 
     //Different points for the animations
     [Header("Position Object References")]
@@ -153,7 +156,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 break;
             }
 
-            //Breaks from the Coroutine for the rest of the frame, resuming next frame
+            //Pauses the Coroutine for the rest of the frame, resuming next frame
             //This stops the while loop from locking up the program, though it only works in a coroutine
             yield return null;
         }
@@ -177,17 +180,23 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
 
         //Waits for the length of the full dip animation
-        yield return new WaitForSeconds(sJDipTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
+        yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
 
         while (true)
         {
             if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
             {
                 Debug.Log("Sludge judge tapped");
+                //Starts the coroutine to return the sludge judge and tank to normal
+                StartCoroutine("SludgeJudgeReturn");
                 break;
             }
             yield return null;
         }
+
+        yield return new WaitForSeconds(sJExamineTransTime + effectAppearDelay);
+
+        tankWallFlashing.gameObject.SetActive(true);
     }
 
     IEnumerator SludgeJudgeDip()
@@ -211,7 +220,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 break;
             }
 
-            //Breaks from the Coroutine for the rest of the frame, resuming next frame
+            //Pauses the Coroutine for the rest of the frame, resuming next frame
             //This stops the while loop from locking up the program, though it only works in a coroutine
             yield return null;
         }
@@ -262,7 +271,32 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
     }
-    
+
+    IEnumerator SludgeJudgeReturn()
+    {
+        //Stores the time the animation started
+        float timeStart = Time.time;
+        float currentTime;
+        while (true)
+        {
+            currentTime = Time.time - timeStart;
+            sludgeJudge.position = Vector3.Lerp(sJExaminePoint.position, sJSampledPoint.position, currentTime / sJExamineTransTime);
+            sludgeJudge.localScale = Vector3.Lerp(sJExaminePoint.localScale, sJSampledPoint.localScale, currentTime / sJExamineTransTime);
+            sludgeJudge.rotation = Quaternion.Lerp(sJExaminePoint.rotation, sJSampledPoint.rotation, currentTime / sJExamineTransTime);
+
+
+            mainTank.position = Vector3.Lerp(tankShrunkPoint.position, tankStartPoint, currentTime / sJExamineTransTime);
+            mainTank.localScale = Vector3.Lerp(tankShrunkPoint.localScale, tankStartScale, currentTime / sJExamineTransTime);
+            mainTank.rotation = Quaternion.Lerp(tankShrunkPoint.rotation, tankStartRot, currentTime / sJExamineTransTime);
+
+            if (currentTime >= sJExamineTransTime)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+    }
 
 
 

@@ -129,14 +129,16 @@ public class GlobalFunctions : MonoBehaviour
             if (Mathf.Abs(difference.x) > Mathf.Abs(swipeDistances.x))
             {
                 swipeDirection = new Vector2(Mathf.Sign(difference.x), 0);
+                break;
             }
             //If the absolute value (always positive) of the difference.y is greater than the swipe distance.y, set difference to either (0,1) or (0,-1) depending on direction
             else if (Mathf.Abs(difference.y) > Mathf.Abs(swipeDistances.y))
             {
                 swipeDirection = new Vector2(0, Mathf.Sign(difference.y));
+                break;
             }
             
-            //Breaks from the Coroutine for the rest of the frame, resuming next frame
+            //Pauses the Coroutine for the rest of the frame, resuming next frame
             //This stops the while loop from locking up the program, though it only works in a coroutine
             yield return null;
         }

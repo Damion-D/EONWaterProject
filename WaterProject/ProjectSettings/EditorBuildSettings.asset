@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 9b0d526cc3d8d1047a946c5b0cb64270
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Module4/SludgeJudgeSampling.unity
+    guid: db3965fc4559da742aa09c97a1874ec0
   m_configObjects: {}

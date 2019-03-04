@@ -13,13 +13,6 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
     public GameObject components;
     public GameObject pauseButton;
     public GameObject playButton;
-    public Material inletHighlight;
-    public Material outletHighlight;
-    public MaintScenarioStory maintScenarioStory;
-    public MaintenanceStory mainStory;
-    public PPEStory ppeStory;
-    public LOTOPumpStory lotopumpstory;
-    public LOTOValveStory lotovalvestory;
 
     [Header("Settings")]
     public float highlightSpeed = 2;
@@ -53,8 +46,6 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
         //Disables every UI Component after being enabled in Awake (to allow code in all awakes under the components to run)
         MenusOff();
         valveSelected = false;
-        inletHighlight.color = new Color(inletHighlight.color.r, inletHighlight.color.g, inletHighlight.color.b, 0);
-        outletHighlight.color = new Color(outletHighlight.color.r, outletHighlight.color.g, outletHighlight.color.b, 0);
     }
 
     private void Update()
@@ -80,15 +71,11 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
                 {
                     //Debug.Log(hit.collider.name);
                     Debug.Log(hit.collider.gameObject.tag);
-                    ppeStory.hitName = hit.collider.gameObject.name;
-                    lotopumpstory.hitName = hit.collider.gameObject.name;
-                    lotovalvestory.hitName = hit.collider.gameObject.name;
-                    Debug.Log("LOTOValve hitName is: "+lotovalvestory.hitName);
                     //Debug.Log("PPEStory hitname is: " + ppeStory.hitName);
                     //Debug.Log(hit.collider.gameObject.name);
                     //these booleans confirm the ray has hit one of the part labels
                     //and selected that part as the part to 'fix'; they originate in the 'mainScenarioStory' script
-                    if (hit.collider.gameObject.tag == "MotorCapsule")
+                    /*if (hit.collider.gameObject.tag == "MotorCapsule")
                     {
                         Debug.Log("Hit Motor Capsule!");
                         maintScenarioStory.HitMotorCapsule = true;
@@ -115,7 +102,7 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
                         {
                             audioManager.PlaySound("CorrectAnswer", 0.3f, true, 2);
                         }
-                    }
+                    }*/
 
                     /*if (hit.collider.gameObject.tag == "Boots")
                     {
@@ -224,35 +211,6 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
                 
         }
             
-    }
-
-    public IEnumerator ValveHighlight(bool inOrOutlet) {
-        int direction = 1;
-
-        Material highlightMaterial;
-
-        //Determines whether the inlet or outlet will be highlighted
-        if (inOrOutlet) {
-            highlightMaterial = inletHighlight;
-            correctValve = "Inlet";
-        }
-        else {
-            highlightMaterial = outletHighlight;
-            correctValve = "Outlet";
-        }
-
-        //Stops animatinig once the valve has been clicked
-        while (!valveSelected) {
-            //Based off of the materials alpha, the direction will change which will lead to the object fading in or out
-            if (highlightMaterial.color.a >= 1)
-                direction = -1;
-
-            else if (highlightMaterial.color.a <= 0)
-                direction = 1;
-
-            highlightMaterial.color = new Color(highlightMaterial.color.r, highlightMaterial.color.g, highlightMaterial.color.b, highlightMaterial.color.a + Time.deltaTime * highlightSpeed * direction);
-            yield return null;
-        }
     }
 
     //Loads back to the main menu

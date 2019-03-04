@@ -49,6 +49,7 @@ public class TextManager : MonoBehaviour
 
     //Init global variables from objects in scene
     public void Awake() {
+        Time.timeScale = 1;
         chapter1Title = GameObject.Find("Chapter1/ChapterTitle").GetComponent<TextMeshProUGUI>();
         chapter2Title = GameObject.Find("Chapter2/ChapterTitle").GetComponent<TextMeshProUGUI>();
         chapter3Title = GameObject.Find("Chapter3/ChapterTitle").GetComponent<TextMeshProUGUI>();

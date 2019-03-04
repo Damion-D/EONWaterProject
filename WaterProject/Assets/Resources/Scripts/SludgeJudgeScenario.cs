@@ -13,11 +13,14 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     [Header("Object References")]
     [SerializeField] Transform sludgeJudge;
+    [SerializeField] Transform sludgeJudgeFlash;
     [SerializeField] Transform mainTank;
     [SerializeField] Transform insertionPoint;
     [SerializeField] Transform tankWaterTop;
+    [SerializeField] Transform tankWaterTopFlash;
     [SerializeField] Transform indicator;
-    [SerializeField] Transform tankWallFlashing;
+    [SerializeField] Transform dumpIndicator;
+    [SerializeField] Transform dumpPoint;
 
     [Space]
 
@@ -36,7 +39,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
 
     [Header("Misc Values")]
-    [SerializeField] float insertionDistance;
+    [SerializeField] float insertionDist;
+    [SerializeField] float dumpDist;
 
     [Header("Animation Times")]
     [SerializeField] float sJDipTime;
@@ -144,7 +148,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 }
             }
             //Checks to see if the horizontal (no y) distance is less than the distance to insert
-            else if(Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(insertionPoint.position.x, insertionPoint.position.z)) < insertionDistance)
+            else if(Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(insertionPoint.position.x, insertionPoint.position.z)) < insertionDist)
             {
                 //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
                 sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
@@ -180,14 +184,18 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
 
         //Waits for the length of the full dip animation
-        yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
+        yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + (sJSampleTime * 2) + sJExamineTransTime + sJReturnDelay);
+
+        sludgeJudgeFlash.gameObject.SetActive(true);
 
         while (true)
         {
             if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
             {
                 Debug.Log("Sludge judge tapped");
-                //Starts the coroutine to return the sludge judge and tank to normal
+                //Starts the coroutine to return the sludge judge and tank to normalorSeconds(sJDipTime + sampleDialogeTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
+
+                sludgeJudgeFlash.gameObject.SetActive(false);
                 StartCoroutine("SludgeJudgeReturn");
                 break;
             }
@@ -196,7 +204,39 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         yield return new WaitForSeconds(sJExamineTransTime + effectAppearDelay);
 
-        tankWallFlashing.gameObject.SetActive(true);
+        dumpIndicator.gameObject.SetActive(true);
+
+        while (true)
+        {
+            //RaycastHit returns all the info from raycast detection
+            RaycastHit hit = GlobalFunctions.DetectConstantTouch();
+            if (hit.transform != null)
+            {
+                //If the object detected is the same as the tankWaterTop
+                if (hit.transform == tankWaterTop)
+                {
+                    //Sets position of the sludge judge on only the horizotal (x and z) to the location the touch was detected
+                    sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
+                }
+            }
+            //Checks to see if the horizontal (no y) distance is less than the distance to insert
+            else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(dumpPoint.position.x, dumpPoint.position.z)) < dumpDist)
+            {
+                //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
+                sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
+                sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
+                sJStartPoint = sludgeJudge.position;
+
+                //Disables indicator effect
+                dumpIndicator.gameObject.SetActive(false);
+                break;
+            }
+
+            //Pauses the Coroutine for the rest of the frame, resuming next frame
+            //This stops the while loop from locking up the program, though it only works in a coroutine
+            yield return null;
+        }
+
     }
 
     IEnumerator SludgeJudgeDip()
@@ -226,7 +266,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
 
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(sampleDialogeTime);
 
         //Sets the 'start time' again so we can repeat the process above -- the current time will start from 0 again because of it
         //The process is the same as the above, only with different variables
@@ -246,7 +286,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(sJSampleTime);
 
         //Sets the 'start time' so we can repeat the process again -- the current time will start from 0 again because of it
         //The process is the same as the first and second time, only with different variables

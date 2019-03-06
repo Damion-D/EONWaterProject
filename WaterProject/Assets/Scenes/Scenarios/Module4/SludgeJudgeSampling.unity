@@ -315,6 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169277350}
   - component: {fileID: 169277351}
+  - component: {fileID: 169277352}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -454,6 +455,30 @@ MonoBehaviour:
   fadingOutSounds: []
   playingSounds: []
   pausedSounds: []
+--- !u!114 &169277352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169277349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fce144cbdaf86849976602f8e611117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tracks:
+  - {fileID: 8300000, guid: 5a6de8637a5b97f47b08a8189bc3da56, type: 3}
+  - {fileID: 8300000, guid: 17b0204043a7a1c42bf428c7af9fe370, type: 3}
+  - {fileID: 8300000, guid: f72df21163da7484487cbcf2ab0dbfc8, type: 3}
+  - {fileID: 8300000, guid: f002644e4b547534699bfa7f49d945ab, type: 3}
+  - {fileID: 8300000, guid: 343fd069cd7ffab42af4bb1c33ba79cf, type: 3}
+  - {fileID: 8300000, guid: e9756d02e5eb43649b9d223c72f2756f, type: 3}
+  - {fileID: 8300000, guid: 4ab8b1bb59293794ca3d3cb54011732e, type: 3}
+  - {fileID: 8300000, guid: 2d1d0b44b18d8ef4e89d2a5059d44384, type: 3}
+  - {fileID: 8300000, guid: 20ca3c3cb7e883840a82f6e074b6804a, type: 3}
+  trackCount: 0
+  ARCam: {fileID: 1645517557}
 --- !u!1001 &207603711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1376,13 +1401,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112f0b471909a204c91fe5699454b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioPlay: {fileID: 169277352}
   sludgeJudge: {fileID: 2150120747805627414}
   sludgeJudgeFlash: {fileID: 705341091}
   mainTank: {fileID: 688804420}
   insertionPoint: {fileID: 1031555360}
   tankWaterTop: {fileID: 39458355}
+  tankWaterTopFlash: {fileID: 0}
   indicator: {fileID: 1796878650}
-  tankWallFlashing: {fileID: 0}
+  dumpIndicator: {fileID: 0}
+  dumpPoint: {fileID: 0}
   mainCam: {fileID: 0}
   sludgeType: 0
   coloredMats:
@@ -1393,7 +1421,8 @@ MonoBehaviour:
   - {r: 0.4528302, g: 0.34389463, b: 0.1986472, a: 1}
   - {r: 0.5943396, g: 0.48679784, b: 0.32800817, a: 1}
   sludgeOptions: 
-  insertionDistance: 0.5
+  insertionDist: 0.5
+  dumpDist: 0.5
   sJDipTime: 4
   sampleDialogeTime: 5
   sJSampleTime: 1.5

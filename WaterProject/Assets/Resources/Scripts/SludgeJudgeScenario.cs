@@ -12,6 +12,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     bool scenarioHasStarted;
 
     [Header("Object References")]
+    [SerializeField] AudioScript AudioPlay;
     [SerializeField] Transform sludgeJudge;
     [SerializeField] Transform sludgeJudgeFlash;
     [SerializeField] Transform mainTank;
@@ -72,6 +73,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     // Start is called before the first frame update
     void Start()
     {
+       
         //Set up the event handler for tracking from Vuforia
         mTrackableBehaviour = GameObject.Find("ImageTarget").GetComponent<TrackableBehaviour>();
 
@@ -133,8 +135,16 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     IEnumerator SludgeJudgeStory()
     {
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 1");
+        yield return new WaitForSeconds(AudioPlay.Tracks[0].length + .5f);
+
+        //Focus on sludge judge
+        
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 2");
+        yield return new WaitForSeconds(AudioPlay.Tracks[1].length);
+
         //Will loop endlessly until a 'break' statement is reached
-        while(true)
+        while (true)
         {
             //RaycastHit returns all the info from raycast detection
             RaycastHit hit = GlobalFunctions.DetectConstantTouch();
@@ -163,10 +173,16 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             //Pauses the Coroutine for the rest of the frame, resuming next frame
             //This stops the while loop from locking up the program, though it only works in a coroutine
             yield return null;
+
+            
         }
+
+       // AudioPlay.PlayAudio();
 
         //Logs that the sludge judge can be swiped down to start the animation
         Debug.Log("Reached Dip Point");
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 3");
+        yield return new WaitForSeconds(AudioPlay.Tracks[2].length);
 
         while (true)
         {
@@ -183,10 +199,14 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
 
-        //Waits for the length of the full dip animation
-        yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + (sJSampleTime * 2) + sJExamineTransTime + sJReturnDelay);
+        yield return new WaitForSeconds(AudioPlay.Tracks[3].length + 6f);
 
-        sludgeJudgeFlash.gameObject.SetActive(true);
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 5");
+        yield return new WaitForSeconds(AudioPlay.Tracks[4].length);  // AUDIO PLAY 5 
+        //Waits for the length of the full dip animation
+        //yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + (sJSampleTime * 2) + sJExamineTransTime + sJReturnDelay);
+
+     
 
         while (true)
         {
@@ -229,6 +249,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
                 //Disables indicator effect
                 dumpIndicator.gameObject.SetActive(false);
+
+                
                 break;
             }
 
@@ -241,6 +263,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     IEnumerator SludgeJudgeDip()
     {
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 4");
         //Stores the time the animation started
         float timeStart = Time.time;
         float currentTime;
@@ -264,9 +287,12 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             //This stops the while loop from locking up the program, though it only works in a coroutine
             yield return null;
         }
+        yield return new WaitForSeconds(AudioPlay.Tracks[3].length - 3f); // Used to shorten the delay between the audio and animation finishing
 
 
-        yield return new WaitForSeconds(sampleDialogeTime);
+       
+
+       // yield return new WaitForSeconds(sampleDialogeTime);
 
         //Sets the 'start time' again so we can repeat the process above -- the current time will start from 0 again because of it
         //The process is the same as the above, only with different variables
@@ -310,10 +336,14 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             
             yield return null;
         }
+
+
     }
 
     IEnumerator SludgeJudgeReturn()
     {
+       
+
         //Stores the time the animation started
         float timeStart = Time.time;
         float currentTime;
@@ -336,6 +366,23 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
             yield return null;
         }
+
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 6");
+        yield return new WaitForSeconds(AudioPlay.Tracks[5].length);
+
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 7");
+        yield return new WaitForSeconds(AudioPlay.Tracks[6].length);
+
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 8");
+        yield return new WaitForSeconds(AudioPlay.Tracks[7].length);
+
+        AudioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 9");
+        yield return new WaitForSeconds(AudioPlay.Tracks[8].length);
+
+        yield return null;
+
+
+        
     }
 
 
@@ -362,6 +409,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         {
             Debug.Log("Starting story");
             scenarioHasStarted = true;
+
             StartCoroutine("SludgeJudgeStory");
         }
     }

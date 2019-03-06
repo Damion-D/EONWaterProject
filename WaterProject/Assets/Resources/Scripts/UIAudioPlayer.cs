@@ -2,7 +2,7 @@
 
 public class UIAudioPlayer : MonoBehaviour {
 
-    public AudioManager audioManager;
+    //public AudioManager audioManager;
     public MovementManager movementManager;
     public GameObject part;
 
@@ -12,10 +12,10 @@ public class UIAudioPlayer : MonoBehaviour {
     {
         if (movementManager.allPartsAssembled)
         {
-            while (audioManager.playingSounds.Count > 0)
+            /*while (audioManager.playingSounds.Count > 0)
                 audioManager.StopSound(audioManager.playingSounds[0].name);
 
-            audioManager.PlaySound(gameObject.tag);
+            audioManager.PlaySound(gameObject.tag);*/
             return;
         }
 

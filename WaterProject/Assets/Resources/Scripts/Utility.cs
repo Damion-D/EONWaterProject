@@ -8,7 +8,7 @@ using Vuforia;
 public class Utility : MonoBehaviour, ITrackableEventHandler {
 
     [Header("References")]
-    public AudioManager audioManager;
+    public AudioScript audioScript;
     public GameObject storyManager;
     public GameObject components;
     public GameObject pauseButton;
@@ -177,14 +177,14 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
     public void PauseAll()
     {
         Time.timeScale = 0;
-        audioManager.PauseAll();
+        audioScript.PauseAudio();
     }
 
     //Resumes all paused functions
     public void ResumeAll()
     {
-        if (tracking)
-            audioManager.ResumeAll();
+
+        audioScript.UnpauseAudio();
         Time.timeScale = 1;
 
         //Turns the pause button on

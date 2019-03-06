@@ -5,7 +5,7 @@ public class AssemblyStory : MonoBehaviour {
 
     [Header("References")]
     public MovementManager movementManager;
-    public AudioManager audioManager;
+    //public AudioManager audioManager;
     public Utility utility;
     public GameObject pauseMenu;
     public GameObject pauseButton;
@@ -19,14 +19,14 @@ public class AssemblyStory : MonoBehaviour {
     private IEnumerator Story()
     {
         yield return new WaitForSeconds(0.5f);
-        audioManager.PlaySound("Narration 2");
+        //audioManager.PlaySound("Narration 2");
 
-        while (true) {
+        /*while (true) {
             if (audioManager.GetSound("Narration 2").hasCompleted)
                 break;
 
             yield return null;
-        }
+        }*/
 
         utility.canSelectObjects = true;
 

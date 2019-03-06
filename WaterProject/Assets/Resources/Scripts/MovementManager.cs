@@ -5,7 +5,7 @@ public class MovementManager : MonoBehaviour {
 
     [Header("References")]
     public Utility utility;
-    public AudioManager audioManager;
+    //public AudioManager audioManager;
     public GameObject viewPosition;
     public Animator animator;
 
@@ -26,7 +26,7 @@ public class MovementManager : MonoBehaviour {
         Vector3 startPos = target.position;
         yield return StartCoroutine(TransformTarget(target, camPos, true));
 
-        while (true) {
+        /*while (true) {
             if (audioManager.GetSound(currentObject.GetComponent<PartID>().uIComponent.tag).hasCompleted)
             {
                 yield return new WaitForSeconds(0.5f);
@@ -34,7 +34,7 @@ public class MovementManager : MonoBehaviour {
             }
 
             yield return null;
-        }
+        }*/
 
         yield return StartCoroutine(TransformTarget(target, startPos, false));
         animator.enabled = true;
@@ -60,9 +60,9 @@ public class MovementManager : MonoBehaviour {
             yield return null;
         }
 
-        if (movingToCam)
+        /*if (movingToCam)
             audioManager.PlaySound(currentObject.GetComponent<PartID>().uIComponent.tag);
         else
-            utility.MenusOff();
+            utility.MenusOff();*/
     }
 }

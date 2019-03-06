@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ARSetupStory : MonoBehaviour {
 
-    public AudioManager audioManager;
+    //public AudioManager audioManager;
     public MeshRenderer meshRenderer;
     public Image settings;
     public Image checker;
@@ -20,12 +20,12 @@ public class ARSetupStory : MonoBehaviour {
     IEnumerator Intro()
     {
         yield return new WaitForSeconds(1);
-        audioManager.PlaySound("Narration 1");
+        //audioManager.PlaySound("Narration 1");
 
         //Checks if tracking has started and if the audio has completed
         while (true)
         {
-            if (audioManager.GetSound("Narration 1").hasCompleted && meshRenderer.enabled)
+            //if (audioManager.GetSound("Narration 1").hasCompleted && meshRenderer.enabled)
                 break;
 
             yield return null;

@@ -7,6 +7,9 @@ public class GlobalFunctions : MonoBehaviour
     public static Camera mainCam;
     public static Vector2 swipeDirection;
 
+    public static bool swiping;
+    public static bool colorFlash;
+
     private void Start()
     {
         //Stores main camera for raycasts
@@ -19,23 +22,8 @@ public class GlobalFunctions : MonoBehaviour
         mainCam = Camera.main;
         RaycastHit hit = new RaycastHit();
 
-        //Uses mouse input if in the editor
-        if (Application.isEditor)
-        {
-            //ScreenPointToRay allows for the touch to shoot a raycast into the scene, using the camera to figure out the origin and direction
-            if (Input.GetMouseButtonDown(0))
-                Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit);
-        }
-        else
-        {
-            //Checks to see if there are any current touches, which avoids errors from Input.GetTouch
-            if (Input.touchCount < 1)
-                return new RaycastHit();
-
-            //ScreenPointToRay allows for the touch to shoot a raycast into the scene, using the camera to figure out the origin and direction
-            Touch touch = Input.GetTouch(0);
-            Physics.Raycast(mainCam.ScreenPointToRay(touch.position), out hit);
-        }
+        if (Input.GetMouseButtonDown(0))
+            Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit);
 
         //StartCoroutine requires a MonoBehaviour to run from, but cannot use this MonoBehaviour script since this function is static, which is why a MonoBehaviour is passed into this function
         if (hit.transform != null)
@@ -57,21 +45,9 @@ public class GlobalFunctions : MonoBehaviour
         mainCam = Camera.main;
         RaycastHit hit = new RaycastHit();
 
-        //Uses mouse input if in the editor
-        if (Application.isEditor)
-        {
-            if (Input.GetMouseButton(0))
-                Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit);
-        }
-        else
-        {
-            //Checks to see if there are any current touches, which avoids errors from Input.GetTouch
-            if (Input.touchCount < 1)
-                return new RaycastHit();
 
-            Touch touch = Input.GetTouch(0);
-            Physics.Raycast(mainCam.ScreenPointToRay(touch.position), out hit);
-        }
+        if (Input.GetMouseButton(0))
+            Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit);
 
         return hit;
     }
@@ -80,69 +56,99 @@ public class GlobalFunctions : MonoBehaviour
     //Coroutine to detect swipes
     public static IEnumerator SwipeDetect(Vector2 swipeDistances)
     {
-        //Stores start time
-        float time = Time.time;
-        float currentTime = 0;
-
-        Vector2 startPos = Vector2.zero;
-        Vector2 currentPos;
-        Vector2 difference;
-
-        //Resets Swipe Direction to zero to avoid accidental detection of the last recorded swipe
-        swipeDirection = Vector2.zero;
-
-        //Uses mouse if in editor
-        if(Application.isEditor)
+        if(!swiping)
         {
-            startPos = Input.mousePosition;
-        }
-        else if(Input.touchCount > 0)
-        {
-            startPos = Input.touches[0].position;
-        }
+            swiping = true;
+            //Stores start time
+            float time = Time.time;
+            float currentTime = 0;
 
-        do
-        {
-            //Finds difference from the current time to the stored time
-            currentTime = Time.time - time;
+            Vector2 startPos = Vector2.zero;
+            Vector2 currentPos;
+            Vector2 difference;
+
+            //Resets Swipe Direction to zero to avoid accidental detection of the last recorded swipe
+            swipeDirection = Vector2.zero;
 
             //Uses mouse if in editor
-            if (Application.isEditor)
+            startPos = Input.mousePosition;
+
+            do
             {
+                //Finds difference from the current time to the stored time
+                currentTime = Time.time - time;
+
+
                 if (!Input.GetMouseButton(0))
                     break;
                 currentPos = Input.mousePosition;
-            }
-            else
-            {
-                if (Input.touchCount == 0)
+
+                //Finds difference in initial touch position to the current touch position
+                difference = currentPos - startPos;
+
+                Debug.Log("Difference: " + difference);
+
+                //If the absolute value (always positive) of the difference.x is greater than the swipe distance.x, set difference to either (1,0) or (-1,0) depending on direction
+                if (Mathf.Abs(difference.x) > Mathf.Abs(swipeDistances.x))
+                {
+                    swipeDirection = new Vector2(Mathf.Sign(difference.x), 0);
                     break;
-                currentPos = Input.touches[0].position;
-            }
+                }
+                //If the absolute value (always positive) of the difference.y is greater than the swipe distance.y, set difference to either (0,1) or (0,-1) depending on direction
+                else if (Mathf.Abs(difference.y) > Mathf.Abs(swipeDistances.y))
+                {
+                    swipeDirection = new Vector2(0, Mathf.Sign(difference.y));
+                    break;
+                }
 
-            //Finds difference in initial touch position to the current touch position
-            difference = currentPos - startPos;
-
-            Debug.Log("Difference: " + difference);
-
-            //If the absolute value (always positive) of the difference.x is greater than the swipe distance.x, set difference to either (1,0) or (-1,0) depending on direction
-            if (Mathf.Abs(difference.x) > Mathf.Abs(swipeDistances.x))
-            {
-                swipeDirection = new Vector2(Mathf.Sign(difference.x), 0);
-                break;
+                //Pauses the Coroutine for the rest of the frame, resuming next frame
+                //This stops the while loop from locking up the program, though it only works in a coroutine
+                yield return null;
             }
-            //If the absolute value (always positive) of the difference.y is greater than the swipe distance.y, set difference to either (0,1) or (0,-1) depending on direction
-            else if (Mathf.Abs(difference.y) > Mathf.Abs(swipeDistances.y))
-            {
-                swipeDirection = new Vector2(0, Mathf.Sign(difference.y));
-                break;
-            }
-            
-            //Pauses the Coroutine for the rest of the frame, resuming next frame
-            //This stops the while loop from locking up the program, though it only works in a coroutine
-            yield return null;
+            //If the swipe isn't completed, will stop once coroutine runs longer than half a second
+            while (currentTime < 0.5f);
+
+            swiping = false;
         }
-        //If the swipe isn't completed, will stop once coroutine runs longer than half a second
-        while (currentTime < 0.5f);
+    }
+
+
+    public static IEnumerator ColorFlash(Material material, Color color, float transTime, float pause)
+    {
+        if(!colorFlash)
+        {
+            colorFlash = true;
+            Debug.Log("Color Flash");
+            Color startingColor = material.color;
+            float startingTime = Time.time;
+            float currentTime;
+
+            while (true)
+            {
+                currentTime = Time.time - startingTime;
+                material.color = Color.Lerp(startingColor, color, currentTime / transTime);
+                if (currentTime >= transTime)
+                {
+                    break;
+                }
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(pause);
+
+            Debug.Log("Color Flash Return");
+            startingTime = Time.time;
+            while (true)
+            {
+                currentTime = Time.time - startingTime;
+                material.color = Color.Lerp(color, startingColor, currentTime / transTime);
+                if (currentTime >= transTime)
+                {
+                    break;
+                }
+                yield return null;
+            }
+            colorFlash = false;
+        }
     }
 }

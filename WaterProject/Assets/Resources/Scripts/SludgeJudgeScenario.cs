@@ -20,6 +20,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] Transform sludgeJudge;
     [SerializeField] Transform sludgeJudgeFlash;
     [SerializeField] Transform sludgeJudgeSludge;
+    [SerializeField] Transform sludgeSampleFlash; 
     [SerializeField] Transform mainTank;
     [SerializeField] Transform insertionPoint;
     [SerializeField] Transform tankWaterTop;
@@ -48,16 +49,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [Space]
 
     public Camera mainCam;
-
-    [Space]
-
-    [Header("Sludge Colours")]
-    public SludgeType sludgeType;
-
-    public Material[] coloredMats;
-    public Color[] sludgeColors;
-
-    [SerializeField] private List<SludgeType> sludgeOptions = new List<SludgeType>();
+    
     [Space]
 
 
@@ -100,15 +92,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     CapsuleCollider sJCollider;
 
-    public enum SludgeType { Primary, Chemical, ActivatedDark, ActivatedLight };
-
     // Start is called before the first frame update
     void Start()
     {
-        sludgeLevels = Mathf.Lerp(sludgeAmount.x, sludgeAmount.y, UnityEngine.Random.Range(0f, 1f));
-        sludgeJudgeSludge.localScale = new Vector3(1.5f, 1.5f, sludgeLevels * (100 / 8));
-        sludgeJudgeSludge.gameObject.SetActive(false);
-
         Time.timeScale = 1;
         //Particle system is turned off, will be turned on in the dump function 
         dumpPartSystem.GetComponent<ParticleSystem>().Stop();
@@ -124,10 +110,6 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
 
         mainCam = Camera.main;
-        for (int i = 0; i < 4; i++)
-        {
-            sludgeOptions.Add((SludgeType)i);
-        }
 
         SetStartPositions();
 
@@ -140,13 +122,6 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     // Update is called once per frame
     void Update()
     {
-        //Old functionality to change between different sludge types, may be removed in the near future
-        if (sludgeOptions.Count > 0 && Input.GetKeyDown(KeyCode.A))
-        {
-            RandomizeSludge();
-            SludgeColor();
-        }
-
         //Tests a touch by logging the name of the object detected
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -160,28 +135,13 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
     }
 
-    void RandomizeSludge()
-    {
-        //Sets sludge type to one of the available options
-        sludgeType = sludgeOptions[UnityEngine.Random.Range(0, sludgeOptions.Count)];
-        //Removes set sludge type
-        sludgeOptions.Remove(sludgeType);
-        //Logs sludge type
-        Debug.Log("Currently " + sludgeType + " sludge.");
-    }
-
-    void SludgeColor()
-    {
-        //Sets the color of all materials in 'coloredMats' to the color of the sludge based on type
-        for (int i = 0; i < coloredMats.Length; i++)
-        {
-            coloredMats[i].color = sludgeColors[(int)sludgeType];
-        }
-    }
-
 
     IEnumerator SludgeJudgeStory()
     {
+        sludgeLevels = Mathf.Lerp(sludgeAmount.x, sludgeAmount.y, UnityEngine.Random.Range(0f, 1f));
+        sludgeJudgeSludge.localScale = new Vector3(sludgeJudgeSludge.localScale.x, sludgeJudgeSludge.localScale.y, sludgeLevels * (1.35f / 8));
+        sludgeJudgeSludge.gameObject.SetActive(false);
+
         audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 1");
         yield return new WaitForSeconds(audioPlay.Tracks[0].length);
 
@@ -196,6 +156,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         //Will loop endlessly until a 'break' statement is reached
         while (true)
         {
+            sJCollider.enabled = false;
             //RaycastHit returns all the info from raycast detection
             RaycastHit hit = GlobalFunctions.DetectConstantTouch();
             if (hit.transform != null)
@@ -256,6 +217,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         //Waits for the length of the full dip animation
         //yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + (sJSampleTime * 2) + sJExamineTransTime + sJReturnDelay);
 
+        sludgeSampleFlash.gameObject.SetActive(true);
 
         //write function -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         SetClipboardDate();
@@ -264,6 +226,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         while(true)
         {
+            sJCollider.enabled = false;
             RaycastHit hit = GlobalFunctions.DetectTouch(this);
             
             if(hit.transform != null)
@@ -284,6 +247,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
 
+        sJCollider.enabled = true;
+
+        sludgeSampleFlash.gameObject.SetActive(false);
         sludgeJudgeFlash.gameObject.SetActive(true);
 
         while (true)
@@ -313,6 +279,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         while (true)
         {
+            sJCollider.enabled = false;
             //RaycastHit returns all the info from raycast detection
             RaycastHit hit = GlobalFunctions.DetectConstantTouch();
             if (hit.transform != null)

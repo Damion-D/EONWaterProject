@@ -13,6 +13,10 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     bool scenarioHasStarted;
     int clipboardInput = 0;
 
+    //If restarted, skips dialogue
+    [SerializeField] int restarts;
+    [SerializeField] bool restarted;
+
     [SerializeField] AudioScript audioPlay;
     [SerializeField] Utility utilityScript;
 
@@ -30,16 +34,22 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] Transform dumpPoint;
     [SerializeField] Transform dumpPartSystem;
 
+    [SerializeField] Transform restartButton;
+
     [Space]
     [Header("Clipboard References")]
 
     [SerializeField] Transform sludgeJudgeClipboard;
-    [SerializeField] GameObject TextMeshPro_date;
-    [SerializeField] Transform TextMeshPro_time;
-    [SerializeField] Transform TextMeshPro_reading;
+    [SerializeField] Transform[] TextMeshPro_date;
+    [SerializeField] Transform[] TextMeshPro_time;
+    [SerializeField] Transform[] TextMeshPro_reading;
     [SerializeField] Transform clipboardShrunkPoint;
 
     [SerializeField] Transform clipboardKeyboard;
+
+    [Space]
+    [Header("Material Refs")]
+    [SerializeField] Material sJPlastic;
 
     [Space]
     [Header("Pause Menu")]
@@ -92,9 +102,12 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     CapsuleCollider sJCollider;
 
+  
+
     // Start is called before the first frame update
     void Start()
     {
+        Input.simulateMouseWithTouches = true;
         Time.timeScale = 1;
         //Particle system is turned off, will be turned on in the dump function 
         dumpPartSystem.GetComponent<ParticleSystem>().Stop();
@@ -139,15 +152,30 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     IEnumerator SludgeJudgeStory()
     {
         sludgeLevels = Mathf.Lerp(sludgeAmount.x, sludgeAmount.y, UnityEngine.Random.Range(0f, 1f));
-        sludgeJudgeSludge.localScale = new Vector3(sludgeJudgeSludge.localScale.x, sludgeJudgeSludge.localScale.y, sludgeLevels * (1.35f / 8));
+
+        sludgeLevels = Mathf.RoundToInt(sludgeLevels);
+
+        sludgeJudgeSludge.localScale = new Vector3(0.015f, 0.015f, sludgeLevels * (1.35f / 9));
         sludgeJudgeSludge.gameObject.SetActive(false);
 
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 1");
-        yield return new WaitForSeconds(audioPlay.Tracks[0].length);
+        /*if(Mathf.CeilToInt(sludgeLevels) - sludgeLevels < 0.2f)
+        {
+            sludgeLevels = Mathf.CeilToInt(sludgeLevels);
+        }
+        else
+        {
+            sludgeLevels = Mathf.Floor(sludgeLevels);
+        }*/
 
-        StartCoroutine(SludgeJudgeFocus());
+        if(!restarted)
+        {
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 1");
+            yield return new WaitForSeconds(audioPlay.Tracks[0].length);
 
-        yield return new WaitForSeconds(audioPlay.Tracks[1].length);
+            StartCoroutine(SludgeJudgeFocus());
+
+            yield return new WaitForSeconds(audioPlay.Tracks[1].length);
+        }
 
 
         //Activates indicator effect
@@ -190,13 +218,25 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         //Logs that the sludge judge can be swiped down to start the animation
         Debug.Log("Reached Dip Point");
 
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 3");
-        yield return new WaitForSeconds(audioPlay.Tracks[2].length);
+        if(!restarted)
+        {
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 3");
+            yield return new WaitForSeconds(audioPlay.Tracks[2].length);
+        }
 
         while (true)
         {
-            //Calls DetectTouch with a swipe distance of 50 pixels in each direction (100 left and right, 100 up and down)
-            GlobalFunctions.DetectTouch(this, new Vector2(50, 50));
+            //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
+            RaycastHit hit = GlobalFunctions.DetectTouch(this, new Vector2(1000, 15));
+            
+            if(hit.transform != null)
+            {
+                if(hit.transform == sludgeJudge)
+                {
+                    StartCoroutine(GlobalFunctions.ColorFlash(sJPlastic, Color.black, 0.1f, 0.25f));
+                }
+            }
+
             //Checks to see if the user swipes downwards
             if (GlobalFunctions.swipeDirection == Vector2.down)
             {
@@ -209,10 +249,17 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
 
 
-        yield return new WaitForSeconds(audioPlay.Tracks[3].length + 6f);
 
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 5");
-        yield return new WaitForSeconds(audioPlay.Tracks[4].length);  // AUDIO PLAY 5 
+        if(!restarted)
+        {
+            yield return new WaitForSeconds(audioPlay.Tracks[3].length + 6f);
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 5");
+            yield return new WaitForSeconds(audioPlay.Tracks[4].length);  // AUDIO PLAY 5 
+        }
+        else
+        {
+            yield return new WaitForSeconds(audioPlay.Tracks[3].length - 6);
+        }
 
         //Waits for the length of the full dip animation
         //yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + (sJSampleTime * 2) + sJExamineTransTime + sJReturnDelay);
@@ -241,7 +288,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
                 if (int.TryParse(hitTrans.name, out clipboardInput))
                 {
-                    TextMeshPro_reading.GetComponent<TMPro.TextMeshPro>().text = clipboardInput.ToString();
+                    TextMeshPro_reading[restarts].GetComponent<TMPro.TextMeshPro>().text = clipboardInput.ToString();
                 }
             }
             yield return null;
@@ -271,9 +318,11 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         yield return new WaitForSeconds(sJExamineTransTime + effectAppearDelay);
 
-
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 6");
-        yield return new WaitForSeconds(audioPlay.Tracks[5].length);
+        if(!restarted)
+        {
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 6");
+            yield return new WaitForSeconds(audioPlay.Tracks[5].length);
+        }
 
         dumpIndicator.gameObject.SetActive(true);
 
@@ -294,6 +343,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             //Checks to see if the horizontal (no y) distance is less than the distance to insert
             else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(dumpPoint.position.x, dumpPoint.position.z)) < dumpDist)
             {
+                sJCollider.enabled = true;
+                
                 //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
                 sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
                 sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
@@ -311,8 +362,17 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         while (true)
         {
-            //Calls DetectTouch with a swipe distance of 100 pixels in each direction (100 left and right, 100 up and down)
-            GlobalFunctions.DetectTouch(this, new Vector2(100, 100));
+            //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
+            RaycastHit hit = GlobalFunctions.DetectTouch(this, new Vector2(1000, 15));
+
+            if (hit.transform != null)
+            {
+                if (hit.transform == sludgeJudge)
+                {
+                    StartCoroutine(GlobalFunctions.ColorFlash(sJPlastic, Color.black, 0.1f, 0.25f));
+                }
+            }
+
             //Checks to see if the user swipes downwards
             if (GlobalFunctions.swipeDirection == Vector2.down)
             {
@@ -324,11 +384,57 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
 
-        yield return new WaitForSeconds(audioPlay.Tracks[6].length + audioPlay.Tracks[7].length + sJDipTime + sJDumpReturnDelay + sJDipTime + 5);
 
-        pauseMenu.SetActive(true);
-        pauseButton.SetActive(false);
-        playButton.SetActive(false);
+        if (!restarted)
+        {
+            yield return new WaitForSeconds(audioPlay.Tracks[6].length + audioPlay.Tracks[7].length + sJDipTime + 5);
+        }
+
+
+        yield return new WaitForSeconds(sJDipTime + sJDumpReturnDelay);
+
+
+
+        while (true)
+        {
+            sJCollider.enabled = false;
+            RaycastHit hit = GlobalFunctions.DetectTouch(this);
+
+            if (hit.transform != null)
+            {
+                Transform hitTrans = hit.transform;
+
+                if (hitTrans.name == "RestartButton")
+                {
+                    restartButton.gameObject.SetActive(false);
+                    break;
+                }
+            }
+            yield return null;
+        }
+
+        restarts++;
+        if(restarts >= 11)
+        {
+            restarts = 0;
+        }
+        restarted = true;
+
+
+        HideClipboard();
+        restartButton.gameObject.SetActive(false);
+
+        sludgeJudge.gameObject.SetActive(true);
+        sludgeJudge.position = sJSampledPoint.position;
+        sludgeJudge.localScale = sJSampledPoint.localScale;
+        sludgeJudge.rotation = sJSampledPoint.rotation;
+
+        mainTank.gameObject.SetActive(true);
+        mainTank.position = tankStartPoint;
+        mainTank.localScale = tankStartScale;
+        mainTank.rotation = tankStartRot;
+
+        StartCoroutine(SludgeJudgeStory());
     }
 
     private void SetClipboardDate()
@@ -337,24 +443,24 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         DateTime dt = GetNow();
         DateTime theTime = realTime();
 
-        TextMeshPro_date.GetComponent<TMPro.TextMeshPro>().text = dt.ToString("yyyy-MM-dd");
-        TextMeshPro_time.GetComponent<TMPro.TextMeshPro>().text = theTime.ToString("HH:mm:ss");
+        TextMeshPro_date[restarts].GetComponent<TMPro.TextMeshPro>().text = dt.ToString("yyyy-MM-dd");
+        TextMeshPro_time[restarts].GetComponent<TMPro.TextMeshPro>().text = theTime.ToString("HH:mm:ss");
+        TextMeshPro_reading[restarts].GetComponent<TMPro.TextMeshPro>().text = "----";
 
         Debug.Log(dt.ToString("yyyy-MM-dd"));
     }
 
     private void ShowClipboard()
     {
-
         sludgeJudgeClipboard.position = Vector3.Lerp(sludgeJudgeClipboard.position, cbStartPoint, 0);
         sludgeJudgeClipboard.localScale = Vector3.Lerp(sludgeJudgeClipboard.localScale, cbStartPoint, 0);
         //sludgeJudgeClipboard.rotation = Quaternion.Lerp(sludgeJudgeClipboard.rotation, cbStartRot, 5);
 
         //disables the clipboard text at start
         sludgeJudgeClipboard.gameObject.SetActive(true);
-        TextMeshPro_date.gameObject.SetActive(true);
-        TextMeshPro_time.gameObject.SetActive(true);
-        TextMeshPro_reading.gameObject.SetActive(true);
+        TextMeshPro_date[restarts].gameObject.SetActive(true);
+        TextMeshPro_time[restarts].gameObject.SetActive(true);
+        TextMeshPro_reading[restarts].gameObject.SetActive(true);
     }
 
     private static DateTime GetNow()
@@ -375,9 +481,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         //sludgeJudgeClipboard.rotation = Quaternion.Lerp(cbStartRot, sludgeJudgeClipboard.rotation, 5);
         //disables the clipboard text at start
         sludgeJudgeClipboard.gameObject.SetActive(false);
-        TextMeshPro_date.gameObject.SetActive(false);
-        TextMeshPro_time.gameObject.SetActive(false);
-        TextMeshPro_reading.gameObject.SetActive(false);
+        TextMeshPro_date[restarts].gameObject.SetActive(false);
+        TextMeshPro_time[restarts].gameObject.SetActive(false);
+        TextMeshPro_reading[restarts].gameObject.SetActive(false);
     }
 
     //Focuses on Sludge Judge, then returns to normal
@@ -405,8 +511,11 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
 
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 2");
-        yield return new WaitForSeconds(audioPlay.Tracks[1].length);
+        if (!restarted)
+        {
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 2");
+            yield return new WaitForSeconds(audioPlay.Tracks[1].length);
+        }
 
         timeStart = Time.time;
         while (true)
@@ -432,7 +541,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     IEnumerator SludgeJudgeDip()
     {
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 4");
+        if(!restarted)
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 4");
 
         //Stores the time the animation started
         float timeStart = Time.time;
@@ -460,7 +570,10 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         sludgeJudgeSludge.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(audioPlay.Tracks[3].length - 3f); // Used to shorten the delay between the audio and animation finishing
+        if(!restarted)
+            yield return new WaitForSeconds(audioPlay.Tracks[3].length - 3f); // Used to shorten the delay between the audio and animation finishing
+        else
+            yield return new WaitForSeconds(2f);
 
         //yield return new WaitForSeconds(sampleDialogeTime);
 
@@ -566,7 +679,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         {
             currentTime = Time.time - timeStart;
             
-            sludgeJudgeSludge.localScale = new Vector3(1.5f, 1.5f, Mathf.Lerp(sludgeJudgeSludge.localScale.z, 0, currentTime / sJDumpReturnDelay));
+            sludgeJudgeSludge.localScale = new Vector3(sludgeJudgeSludge.localEulerAngles.x, sludgeJudgeSludge.localEulerAngles.y, Mathf.Lerp(sludgeJudgeSludge.localScale.z, 0, currentTime / sJDumpReturnDelay));
 
             if (currentTime >= sJDumpReturnDelay)
             {
@@ -594,14 +707,18 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         }
 
 
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 7");
-        yield return new WaitForSeconds(audioPlay.Tracks[6].length);
+        if (!restarted)
+        {
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 7");
+            yield return new WaitForSeconds(audioPlay.Tracks[6].length);
 
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 8");
-        yield return new WaitForSeconds(audioPlay.Tracks[7].length);
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 8");
+            yield return new WaitForSeconds(audioPlay.Tracks[7].length);
 
 
-        audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 9");
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 9");
+        }
+        
 
         timeStart = Time.time;
         while (true)
@@ -629,6 +746,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
 
         ShowClipboard();
+        restartButton.gameObject.SetActive(true);
     }
 
 

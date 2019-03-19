@@ -58,9 +58,13 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [Space]
 
     public Camera mainCam;
-    
+
     [Space]
 
+
+    [Header("Other Sounds")]
+    [Space]
+ 
 
     [Header("Misc Values")]
     [SerializeField] float insertionDist;
@@ -101,7 +105,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     CapsuleCollider sJCollider;
 
-  
+    
 
     // Start is called before the first frame update
     void Start()

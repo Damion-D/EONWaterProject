@@ -14,6 +14,8 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
     public GameObject pauseButton;
     public GameObject playButton;
 
+    public AudioSource waterSound;
+
     [Header("Settings")]
     public float highlightSpeed = 2;
     public bool initializeUI = true;
@@ -144,6 +146,9 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
         //Only resumes if the previous state was not tracking
         if ((newStatus == TrackableBehaviour.Status.TRACKED || newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED) && previousStatus == TrackableBehaviour.Status.NO_POSE)
         {
+            if (!waterSound.isPlaying)
+                waterSound.Play();
+
             tracking = true;
             /*for (int i = 0; i < components.transform.parent.childCount; i++)
             {
@@ -155,7 +160,7 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
                 
             }*/
 
-            //ResumeAll();
+            ResumeAll();
 
             //Start story once
             if (!storyHasStarted)
@@ -178,6 +183,7 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
     {
         Time.timeScale = 0;
         audioScript.PauseAudio();
+        waterSound.Pause();
     }
 
     //Resumes all paused functions
@@ -185,6 +191,7 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
     {
 
         audioScript.UnpauseAudio();
+        waterSound.UnPause();
         Time.timeScale = 1;
 
         /*//Turns the pause button on

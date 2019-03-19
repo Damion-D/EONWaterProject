@@ -1,4 +1,0 @@
-#Tue Mar 19 12:09:06 CDT 2019
-base.0=C\:\\Users\\student\\Documents\\GitHub\\EONWaterProject\\WaterProject\\Temp\\gradleOut\\build\\intermediates\\transforms\\dexMerger\\release\\0
-path.0=classes.dex
-renamed.0=classes.dex

@@ -211,7 +211,7 @@ b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 3ee8d5ec6a3e0a1ea2a0b71fb359f470 Assembly-CSharp.dll:.GifPlayer
 ab2eae4e922e3ced35586ea39da99a9e Assembly-CSharp.dll:.FindAllScripts
 3375c3d749f8f4cad889721b431bdc27 Assembly-CSharp.dll:TMPro.Examples.CameraController
-f52dd7a18be3a1f11c3185575e8efbfe Assembly-CSharp.dll:.SludgeJudgeScenario
+1384831e6adfd02250c5fb35ab91ab8a Assembly-CSharp.dll:.SludgeJudgeScenario
 e63944317d2f5958e31963668bb29158 Assembly-CSharp.dll:TMPro.Examples.VertexJitter
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.Analytics.Editor.dll:UnityEditor.Analytics.AnalyticsEventTrackerEditor
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator

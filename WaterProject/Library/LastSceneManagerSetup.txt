@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Scenarios/Module4/SludgeJudgeSampling.unity
+- path: Assets/Scenes/Scenarios/Module5/Titrator.unity
   isLoaded: 1
   isActive: 1

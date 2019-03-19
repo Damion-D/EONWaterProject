@@ -145,7 +145,7 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
         if ((newStatus == TrackableBehaviour.Status.TRACKED || newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED) && previousStatus == TrackableBehaviour.Status.NO_POSE)
         {
             tracking = true;
-            for (int i = 0; i < components.transform.parent.childCount; i++)
+            /*for (int i = 0; i < components.transform.parent.childCount; i++)
             {
                 if(components.transform.parent.GetChild(i).gameObject.tag!="DontTurnOff")
                 {
@@ -153,9 +153,9 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
                     pauseButton.SetActive(true);
                 }
                 
-            }
+            }*/
 
-            ResumeAll();
+            //ResumeAll();
 
             //Start story once
             if (!storyHasStarted)
@@ -187,10 +187,10 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
         audioScript.UnpauseAudio();
         Time.timeScale = 1;
 
-        //Turns the pause button on
+        /*//Turns the pause button on
         for (int i = 0; i < components.transform.parent.childCount; i++)
             if (components.transform.parent.GetChild(i).name == "Pause_Button" || components.transform.parent.GetChild(i).name == "UI_Components")
-                components.transform.parent.GetChild(i).gameObject.SetActive(true);
+                components.transform.parent.GetChild(i).gameObject.SetActive(true);*/
     }
 
     //Turns off all of the menus

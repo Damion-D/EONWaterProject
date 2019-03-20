@@ -3651,7 +3651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restarts: 0
-  restarted: 1
+  restarted: 0
   audioPlay: {fileID: 169277351}
   utilityScript: {fileID: 0}
   sludgeJudge: {fileID: 1200313806}
@@ -3666,6 +3666,7 @@ MonoBehaviour:
   dumpIndicator: {fileID: 418992401}
   dumpPoint: {fileID: 259383274}
   dumpPartSystem: {fileID: 1120598573}
+  darkPlane: {fileID: 0}
   sludgeJudgeClipboard: {fileID: 1116598332331248480}
   TextMeshPro_date:
   - {fileID: 2117850151}
@@ -3739,6 +3740,8 @@ MonoBehaviour:
   tankStartRot: {x: 0, y: 0, z: 0, w: 0}
   cbStartPoint: {x: 0, y: 0, z: 0}
   cbStartScale: {x: 0, y: 0, z: 0}
+  waitTime: 0
+  step: 0
 --- !u!1 &638789397
 GameObject:
   m_ObjectHideFlags: 0

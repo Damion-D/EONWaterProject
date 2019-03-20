@@ -107,7 +107,10 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     CapsuleCollider sJCollider;
 
-    
+
+    [SerializeField] float waitTime;
+    [SerializeField] int step;
+
 
     // Start is called before the first frame update
     void Start()
@@ -140,21 +143,83 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     // Update is called once per frame
     void Update()
     {
-        //Tests a touch by logging the name of the object detected
-        if (Input.GetKeyDown(KeyCode.S))
+        if(waitTime > 0)
         {
-            //RaycastHit returns all the info from raycast detection
-            RaycastHit hit = GlobalFunctions.DetectTouch(this);
-            if (hit.transform != null)
+            waitTime -= Time.deltaTime;
+            if (waitTime < 0)
+                waitTime = 0;
+        }
+        else
+        {
+            switch(step)
             {
-                //Logs name of detected object
-                Debug.Log(hit.transform.name);
+                case 0:
+                    IntroOne();
+                    break;
+
+                case 1:
+                    IntroTwo();
+                    break;
+
+                case 2:
+                    WaterFlash(true);
+                    step++;
+                    break;
+
+                case 3:
+                    SJFirstMove();
+                    break;
+
+                case 4:
+                    SludgeJudgeFlash(true);
+                    step++;
+                    break;
+
+                case 5:
+                    SJFirstSwipe();
+                    break;
+
+                case 6:
+                    ClipboardDelay();
+                    break;
+
+                case 7:
+                    ClipboardTrans();
+                    break;
+
+                case 8:
+                    ClipboardKeypadInput();
+                    break;
+
+                case 9:
+                    ClipboardExit();
+                    break;
+
+                case 10:
+                    DumpTrans();
+                    break;
+
+                case 11:
+                    WaterFlash(true);
+                    step++;
+                    break;
+
+                case 12:
+                    SJSecondMove();
+                    break;
+
+                case 13:
+                    SJSecondSwipe();
+                    break;
+
+                case 14:
+                    End();
+                    break;
             }
         }
     }
 
-
-    IEnumerator SludgeJudgeStory()
+    void IntroOne()
     {
         sludgeLevels = Mathf.Lerp(sludgeAmount.x, sludgeAmount.y, UnityEngine.Random.Range(0f, 1f));
 
@@ -171,110 +236,121 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         {
             sludgeLevels = Mathf.Floor(sludgeLevels);
         }*/
-
-        if(!restarted)
+        if (!restarted)
         {
             audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 1");
-            yield return new WaitForSeconds(audioPlay.Tracks[0].length);
+            waitTime += audioPlay.Tracks[0].length;
+        }
+        step++;
+    }
 
+    //Intro is split into two parts because of the delay for the audio. It would start both at once if it was in one function
+    void IntroTwo()
+    {
+        if(!restarted)
+        {
             StartCoroutine(SludgeJudgeFocus());
-
-            yield return new WaitForSeconds(audioPlay.Tracks[1].length);
+            waitTime += audioPlay.Tracks[1].length;
         }
+        
+        step++;
+    }
 
-
-        //Activates indicator effect
-        tankWaterTopFlash.gameObject.SetActive(true);
-
-        //Will loop endlessly until a 'break' statement is reached
-        while (true)
+    //Moving the sludge judge to the dip position
+    void SJFirstMove()
+    {
+        sJCollider.enabled = false;
+        //RaycastHit returns all the info from raycast detection
+        RaycastHit hit = GlobalFunctions.DetectConstantTouch();
+        if (hit.transform != null)
         {
-            sJCollider.enabled = false;
-            //RaycastHit returns all the info from raycast detection
-            RaycastHit hit = GlobalFunctions.DetectConstantTouch();
-            if (hit.transform != null)
+            //If the object detected is the same as the tankWaterTop
+            if (hit.transform == tankWaterTop)
             {
-                //If the object detected is the same as the tankWaterTop
-                if (hit.transform == tankWaterTop)
-                {
-                    tankWaterTopFlash.gameObject.SetActive(false);
-                    indicator.gameObject.SetActive(true);
-                    //Sets position of the sludge judge on only the horizotal (x and z) to the location the touch was detected
-                    sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
-                }
+                WaterFlash(false);
+                indicator.gameObject.SetActive(true);
+                //Sets position of the sludge judge on only the horizotal (x and z) to the location the touch was detected
+                sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
             }
-            //Checks to see if the horizontal (no y) distance is less than the distance to insert
-            else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(insertionPoint.position.x, insertionPoint.position.z)) < insertionDist)
-            {
-                //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
-                sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
-                sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
-                sJStartPoint = sludgeJudge.position;
-
-                //Disables indicator effect
-                indicator.gameObject.SetActive(false);
-                sJCollider.enabled = true;
-                break;
-            }
-
-            //Pauses the Coroutine for the rest of the frame, resuming next frame
-            //This stops the while loop from locking up the program, though it only works in a coroutine
-            yield return null;
         }
-
-        //Logs that the sludge judge can be swiped down to start the animation
-        Debug.Log("Reached Dip Point");
-
-        if(!restarted)
+        //Checks to see if the horizontal (no y) distance is less than the distance to insert
+        else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(insertionPoint.position.x, insertionPoint.position.z)) < insertionDist)
         {
-            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 3");
-            yield return new WaitForSeconds(audioPlay.Tracks[2].length);
-        }
+            //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
+            sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
+            sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
+            sJStartPoint = sludgeJudge.position;
 
-        sludgeJudgeFlash.gameObject.SetActive(true);
-        GlobalFunctions.swipeDirection = Vector2.zero;
+            //Disables indicator effect
+            indicator.gameObject.SetActive(false);
+            sJCollider.enabled = true;
 
-        while (true)
-        {
-            //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
-            RaycastHit hit = GlobalFunctions.DetectTouch(this, new Vector2(1000, 15));
-            
-            if(hit.transform != null)
+
+            //Logs that the sludge judge can be swiped down to start the animation
+            Debug.Log("Reached Dip Point");
+
+            if (!restarted)
             {
-                if(hit.transform == sludgeJudge)
-                {
-                    StartCoroutine(GlobalFunctions.ColorFlash(sJMats, Color.black, 0.1f, 0.25f));
-                }
+                audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 3");
+                waitTime += audioPlay.Tracks[2].length;
             }
 
-            //Checks to see if the user swipes downwards
-            if (GlobalFunctions.swipeDirection == Vector2.down)
+            GlobalFunctions.swipeDirection = Vector2.zero;
+
+            step++;
+        }
+    }
+
+    //Swipe down to dip sludge judge
+    void SJFirstSwipe()
+    {
+        //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
+        RaycastHit hit = GlobalFunctions.DetectTouch(this, new Vector2(1000, 15));
+
+        if (hit.transform != null)
+        {
+            if (hit.transform == sludgeJudge)
             {
-                Debug.Log("Sludge judge swiped");
-                //Starts the coroutine for the sludge judge dip animation
-                StartCoroutine("SludgeJudgeDip");
-                sludgeJudgeFlash.gameObject.SetActive(false);
-                break;
+                StartCoroutine(GlobalFunctions.ColorFlash(sJMats, Color.black, 0.1f, 0.25f));
             }
-            yield return null;
         }
 
-
-
-        if(!restarted)
+        //Checks to see if the user swipes downwards
+        if (GlobalFunctions.swipeDirection == Vector2.down)
         {
-            yield return new WaitForSeconds(audioPlay.Tracks[3].length + 6f);
+            Debug.Log("Sludge judge swiped");
+            //Starts the coroutine for the sludge judge dip animation
+            StartCoroutine("SludgeJudgeDip");
+            SludgeJudgeFlash(false);
+
+            if (!restarted)
+            {
+                waitTime += audioPlay.Tracks[3].length + 6f;
+            }
+
+            step++;
+        }
+    }
+
+    void ClipboardDelay()
+    {
+        if (!restarted)
+        {
             audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 5");
-            yield return new WaitForSeconds(audioPlay.Tracks[4].length);  // AUDIO PLAY 5 
+            waitTime += audioPlay.Tracks[4].length;  // AUDIO PLAY 5 
         }
         else
         {
-            yield return new WaitForSeconds(audioPlay.Tracks[3].length - 6);
+            waitTime += audioPlay.Tracks[3].length - 6;
         }
-
         //Waits for the length of the full dip animation
         //yield return new WaitForSeconds(sJDipTime + sampleDialogeTime + (sJSampleTime * 2) + sJExamineTransTime + sJReturnDelay);
+        step++;
+    }
 
+
+    void ClipboardTrans()
+    {
         sludgeSampleFlash.gameObject.SetActive(true);
 
         //write function -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -282,135 +358,140 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         ShowClipboard();
         clipboardKeyboard.gameObject.SetActive(true);
 
-        while(true)
+        step++;
+    }
+
+
+    void ClipboardKeypadInput()
+    {
+        sJCollider.enabled = false;
+        RaycastHit hit = GlobalFunctions.DetectTouch(this);
+
+        if (hit.transform != null)
         {
-            sJCollider.enabled = false;
-            RaycastHit hit = GlobalFunctions.DetectTouch(this);
-            
-            if(hit.transform != null)
+            Transform hitTrans = hit.transform;
+
+            if (hitTrans.name == "Enter" && clipboardInput == Mathf.RoundToInt(sludgeLevels))
             {
-                Transform hitTrans = hit.transform;
+                clipboardKeyboard.gameObject.SetActive(false);
 
-                if (hitTrans.name == "Enter" && clipboardInput == Mathf.RoundToInt(sludgeLevels))
-                {
-                    clipboardKeyboard.gameObject.SetActive(false);
-                    break;
-                }
-
-                if (int.TryParse(hitTrans.name, out clipboardInput))
-                {
-                    TextMeshPro_reading[restarts].GetComponent<TMPro.TextMeshPro>().text = clipboardInput.ToString();
-                }
-            }
-            yield return null;
-        }
-
-        sJCollider.enabled = true;
-
-        sludgeSampleFlash.gameObject.SetActive(false);
-        sludgeJudgeFlash.gameObject.SetActive(true);
-
-        while (true)
-        {
-            if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
-            {
-                HideClipboard();
-
-
-                Debug.Log("Sludge judge tapped");
-                //Starts the coroutine to return the sludge judge and tank to normalorSeconds(sJDipTime + sampleDialogeTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
-
-                sludgeJudgeFlash.gameObject.SetActive(false);
-                StartCoroutine("SludgeJudgeReturn");
-                break;
-            }
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(sJExamineTransTime + effectAppearDelay);
-
-        if(!restarted)
-        {
-            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 6");
-            yield return new WaitForSeconds(audioPlay.Tracks[5].length);
-        }
-
-        tankWaterTopFlash.gameObject.SetActive(true);
-
-        while (true)
-        {
-            sJCollider.enabled = false;
-            //RaycastHit returns all the info from raycast detection
-            RaycastHit hit = GlobalFunctions.DetectConstantTouch();
-            if (hit.transform != null)
-            {
-                //If the object detected is the same as the tankWaterTop
-                if (hit.transform == tankWaterTop)
-                {
-                    tankWaterTopFlash.gameObject.SetActive(false);
-                    dumpIndicator.gameObject.SetActive(true);
-                    //Sets position of the sludge judge on only the horizotal (x and z) to the location the touch was detected
-                    sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
-                }
-            }
-            //Checks to see if the horizontal (no y) distance is less than the distance to insert
-            else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(dumpPoint.position.x, dumpPoint.position.z)) < dumpDist)
-            {
                 sJCollider.enabled = true;
-                
-                //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
-                sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
-                sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
-                sJStartPoint = sludgeJudge.position;
 
-                //Disables indicator effect
-                dumpIndicator.gameObject.SetActive(false);
-                break;
+                sludgeSampleFlash.gameObject.SetActive(false);
+                sludgeJudgeFlash.gameObject.SetActive(true);
+
+                step++;
             }
 
-            //Pauses the Coroutine for the rest of the frame, resuming next frame
-            //This stops the while loop from locking up the program, though it only works in a coroutine
-            yield return null;
+            if (int.TryParse(hitTrans.name, out clipboardInput))
+            {
+                TextMeshPro_reading[restarts].GetComponent<TMPro.TextMeshPro>().text = clipboardInput.ToString();
+            }
         }
+    }
 
-        sludgeJudgeFlash.gameObject.SetActive(true);
-        GlobalFunctions.swipeDirection = Vector2.zero;
 
-        while (true)
+    void ClipboardExit()
+    {
+        if (GlobalFunctions.DetectTouch(this).transform == sludgeJudge)
         {
-            //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
-            RaycastHit hit = GlobalFunctions.DetectTouch(this, new Vector2(1000, 15));
+            HideClipboard();
 
-            if (hit.transform != null)
-            {
-                if (hit.transform == sludgeJudge)
-                {
-                    StartCoroutine(GlobalFunctions.ColorFlash(sJMats, Color.black, 0.1f, 0.25f));
-                }
-            }
 
-            //Checks to see if the user swipes downwards
-            if (GlobalFunctions.swipeDirection == Vector2.down)
-            {
-                Debug.Log("Sludge judge swiped");
-                //Starts the coroutine for the sludge judge dip animation
-                StartCoroutine("SludgeJudgeDump");
-                sludgeJudgeFlash.gameObject.SetActive(false);
-                break;
-            }
-            yield return null;
+            Debug.Log("Sludge judge tapped");
+            //Starts the coroutine to return the sludge judge and tank to normalorSeconds(sJDipTime + sampleDialogeTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
+
+            SludgeJudgeFlash(false);
+            StartCoroutine("SludgeJudgeReturn");
+
+            waitTime += sJExamineTransTime + effectAppearDelay;
+
+            step++;
         }
+    }
 
 
+    void DumpTrans()
+    {
         if (!restarted)
         {
-            yield return new WaitForSeconds(audioPlay.Tracks[6].length + audioPlay.Tracks[7].length);
+            audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 6");
+            waitTime += audioPlay.Tracks[5].length;
         }
 
+        step++;
+    }
 
-        yield return new WaitForSeconds(sJDipTime + sJDumpReturnDelay + sJDipTime + 5);
 
+    //Moving sludge judge to dump point
+    void SJSecondMove()
+    {
+        sJCollider.enabled = false;
+        //RaycastHit returns all the info from raycast detection
+        RaycastHit hit = GlobalFunctions.DetectConstantTouch();
+        if (hit.transform != null)
+        {
+            //If the object detected is the same as the tankWaterTop
+            if (hit.transform == tankWaterTop)
+            {
+                WaterFlash(false);
+                dumpIndicator.gameObject.SetActive(true);
+                //Sets position of the sludge judge on only the horizotal (x and z) to the location the touch was detected
+                sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
+            }
+        }
+        //Checks to see if the horizontal (no y) distance is less than the distance to insert
+        else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(dumpPoint.position.x, dumpPoint.position.z)) < dumpDist)
+        {
+            sJCollider.enabled = true;
 
+            //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
+            sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
+            sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
+            sJStartPoint = sludgeJudge.position;
+
+            //Disables indicator effect
+            dumpIndicator.gameObject.SetActive(false);
+
+            SludgeJudgeFlash(true);
+            GlobalFunctions.swipeDirection = Vector2.zero;
+
+            step++;
+        }
+    }
+
+    void SJSecondSwipe()
+    {
+        //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
+        RaycastHit hit = GlobalFunctions.DetectTouch(this, new Vector2(1000, 15));
+
+        if (hit.transform != null)
+        {
+            if (hit.transform == sludgeJudge)
+            {
+                StartCoroutine(GlobalFunctions.ColorFlash(sJMats, Color.black, 0.1f, 0.25f));
+            }
+        }
+
+        //Checks to see if the user swipes downwards
+        if (GlobalFunctions.swipeDirection == Vector2.down)
+        {
+            Debug.Log("Sludge judge swiped");
+            //Starts the coroutine for the sludge judge dip animation
+            StartCoroutine("SludgeJudgeDump");
+            sludgeJudgeFlash.gameObject.SetActive(false);
+
+            if (!restarted)
+            {
+                waitTime += audioPlay.Tracks[6].length + audioPlay.Tracks[7].length;
+            }
+            waitTime += sJDipTime + sJDumpReturnDelay + sJDipTime + 5;
+            step++;
+        }
+    }
+
+    void End()
+    {
 
         /*while (true)
         {
@@ -429,13 +510,34 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             }
             yield return null;
         }*/
-        
+
 
         pauseButton.SetActive(false);
         pauseMenu.SetActive(true);
         restartButton.SetActive(true);
         playButton.SetActive(false);
+
+        step++;
     }
+
+
+    void WaterFlash(bool on)
+    {
+        tankWaterTopFlash.gameObject.SetActive(on);
+    }
+
+    void SludgeJudgeFlash(bool on)
+    {
+        sludgeJudgeFlash.gameObject.SetActive(on);
+    }
+
+    /*IEnumerator SludgeJudgeStory()
+    {
+        
+
+
+        
+    }*/
 
     public void Restart()
     {
@@ -465,7 +567,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         restartButton.SetActive(false);
         playButton.SetActive(true);
 
-        StartCoroutine(SludgeJudgeStory());
+        //StartCoroutine(SludgeJudgeStory());
+        step = 0;
     }
 
     IEnumerator FadeDarkPlane(float opacity)

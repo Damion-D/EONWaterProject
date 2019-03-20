@@ -151,4 +151,58 @@ public class GlobalFunctions : MonoBehaviour
             colorFlash = false;
         }
     }
+
+    public static IEnumerator ColorFlash(Material[] material, Color color, float transTime, float pause)
+    {
+        if (!colorFlash)
+        {
+            colorFlash = true;
+            Debug.Log("Color Flash");
+            Color[] startingColor = new Color[material.Length];
+            float startingTime = Time.time;
+            float currentTime;
+
+            for (int i = 0; i < material.Length; i++)
+            {
+                startingColor[i] = material[i].color;
+            }
+
+            while (true)
+            {
+                currentTime = Time.time - startingTime;
+
+                for (int i = 0; i < material.Length; i++)
+                {
+                    material[i].color = Color.Lerp(startingColor[i], color, currentTime / transTime);
+                }
+                
+                if (currentTime >= transTime)
+                {
+                    break;
+                }
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(pause);
+
+            Debug.Log("Color Flash Return");
+            startingTime = Time.time;
+            while (true)
+            {
+                currentTime = Time.time - startingTime;
+
+                for (int i = 0; i < material.Length; i++)
+                {
+                    material[i].color = Color.Lerp(color, startingColor[i], currentTime / transTime);
+                }
+
+                if (currentTime >= transTime)
+                {
+                    break;
+                }
+                yield return null;
+            }
+            colorFlash = false;
+        }
+    }
 }

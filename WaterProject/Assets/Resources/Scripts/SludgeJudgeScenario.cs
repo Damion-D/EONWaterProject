@@ -34,7 +34,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] Transform dumpPoint;
     [SerializeField] Transform dumpPartSystem;
 
-    [SerializeField] Transform restartButton;
+    [SerializeField] UnityEngine.UI.Image darkPlane;
 
     [Space]
     [Header("Clipboard References")]
@@ -49,19 +49,24 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     [Space]
     [Header("Material Refs")]
-    [SerializeField] Material sJPlastic;
+    [SerializeField] Material[] sJMats;
 
     [Space]
     [Header("Pause Menu")]
     [SerializeField] GameObject playButton;
     [SerializeField] GameObject pauseButton;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject restartButton;
     [Space]
 
     public Camera mainCam;
-    
+
     [Space]
 
+
+    [Header("Other Sounds")]
+    [Space]
+ 
 
     [Header("Misc Values")]
     [SerializeField] float insertionDist;
@@ -102,7 +107,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     CapsuleCollider sJCollider;
 
-  
+    
 
     // Start is called before the first frame update
     void Start()
@@ -179,7 +184,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
 
         //Activates indicator effect
-        indicator.gameObject.SetActive(true);
+        tankWaterTopFlash.gameObject.SetActive(true);
 
         //Will loop endlessly until a 'break' statement is reached
         while (true)
@@ -192,6 +197,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 //If the object detected is the same as the tankWaterTop
                 if (hit.transform == tankWaterTop)
                 {
+                    tankWaterTopFlash.gameObject.SetActive(false);
+                    indicator.gameObject.SetActive(true);
                     //Sets position of the sludge judge on only the horizotal (x and z) to the location the touch was detected
                     sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
                 }
@@ -224,6 +231,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return new WaitForSeconds(audioPlay.Tracks[2].length);
         }
 
+        sludgeJudgeFlash.gameObject.SetActive(true);
+        GlobalFunctions.swipeDirection = Vector2.zero;
+
         while (true)
         {
             //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
@@ -233,7 +243,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             {
                 if(hit.transform == sludgeJudge)
                 {
-                    StartCoroutine(GlobalFunctions.ColorFlash(sJPlastic, Color.black, 0.1f, 0.25f));
+                    StartCoroutine(GlobalFunctions.ColorFlash(sJMats, Color.black, 0.1f, 0.25f));
                 }
             }
 
@@ -243,6 +253,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 Debug.Log("Sludge judge swiped");
                 //Starts the coroutine for the sludge judge dip animation
                 StartCoroutine("SludgeJudgeDip");
+                sludgeJudgeFlash.gameObject.SetActive(false);
                 break;
             }
             yield return null;
@@ -324,7 +335,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return new WaitForSeconds(audioPlay.Tracks[5].length);
         }
 
-        dumpIndicator.gameObject.SetActive(true);
+        tankWaterTopFlash.gameObject.SetActive(true);
 
         while (true)
         {
@@ -336,6 +347,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 //If the object detected is the same as the tankWaterTop
                 if (hit.transform == tankWaterTop)
                 {
+                    tankWaterTopFlash.gameObject.SetActive(false);
+                    dumpIndicator.gameObject.SetActive(true);
                     //Sets position of the sludge judge on only the horizotal (x and z) to the location the touch was detected
                     sludgeJudge.position = new Vector3(hit.point.x, sludgeJudge.position.y, hit.point.z);
                 }
@@ -360,6 +373,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
 
+        sludgeJudgeFlash.gameObject.SetActive(true);
+        GlobalFunctions.swipeDirection = Vector2.zero;
+
         while (true)
         {
             //Calls DetectTouch with a swipe distance of 15 pixels in each direction (15 left and right, 15 up and down)
@@ -369,7 +385,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             {
                 if (hit.transform == sludgeJudge)
                 {
-                    StartCoroutine(GlobalFunctions.ColorFlash(sJPlastic, Color.black, 0.1f, 0.25f));
+                    StartCoroutine(GlobalFunctions.ColorFlash(sJMats, Color.black, 0.1f, 0.25f));
                 }
             }
 
@@ -379,6 +395,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 Debug.Log("Sludge judge swiped");
                 //Starts the coroutine for the sludge judge dip animation
                 StartCoroutine("SludgeJudgeDump");
+                sludgeJudgeFlash.gameObject.SetActive(false);
                 break;
             }
             yield return null;
@@ -387,15 +404,15 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         if (!restarted)
         {
-            yield return new WaitForSeconds(audioPlay.Tracks[6].length + audioPlay.Tracks[7].length + sJDipTime + 5);
+            yield return new WaitForSeconds(audioPlay.Tracks[6].length + audioPlay.Tracks[7].length);
         }
 
 
-        yield return new WaitForSeconds(sJDipTime + sJDumpReturnDelay);
+        yield return new WaitForSeconds(sJDipTime + sJDumpReturnDelay + sJDipTime + 5);
 
 
 
-        while (true)
+        /*while (true)
         {
             sJCollider.enabled = false;
             RaycastHit hit = GlobalFunctions.DetectTouch(this);
@@ -411,10 +428,19 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 }
             }
             yield return null;
-        }
+        }*/
+        
 
+        pauseButton.SetActive(false);
+        pauseMenu.SetActive(true);
+        restartButton.SetActive(true);
+        playButton.SetActive(false);
+    }
+
+    public void Restart()
+    {
         restarts++;
-        if(restarts >= 11)
+        if (restarts >= 11)
         {
             restarts = 0;
         }
@@ -433,8 +459,22 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         mainTank.position = tankStartPoint;
         mainTank.localScale = tankStartScale;
         mainTank.rotation = tankStartRot;
+        
+        pauseButton.SetActive(true);
+        pauseMenu.SetActive(false);
+        restartButton.SetActive(false);
+        playButton.SetActive(true);
 
         StartCoroutine(SludgeJudgeStory());
+    }
+
+    IEnumerator FadeDarkPlane(float opacity)
+    {
+        float startTime = Time.time;
+        while(true)
+        {
+            darkPlane.color = Color.Lerp(darkPlane.color, new Color(darkPlane.color.r, darkPlane.color.g, darkPlane.color.b, opacity), (Time.time - startTime) / 2);
+        }
     }
 
     private void SetClipboardDate()
@@ -746,7 +786,6 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
 
         ShowClipboard();
-        restartButton.gameObject.SetActive(true);
     }
 
 

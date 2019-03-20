@@ -34,6 +34,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] Transform dumpPoint;
     [SerializeField] Transform dumpPartSystem;
 
+    [SerializeField] UnityEngine.UI.Image darkPlane;
+
     [Space]
     [Header("Clipboard References")]
 
@@ -464,6 +466,15 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         playButton.SetActive(true);
 
         StartCoroutine(SludgeJudgeStory());
+    }
+
+    IEnumerator FadeDarkPlane(float opacity)
+    {
+        float startTime = Time.time;
+        while(true)
+        {
+            darkPlane.color = Color.Lerp(darkPlane.color, new Color(darkPlane.color.r, darkPlane.color.g, darkPlane.color.b, opacity), (Time.time - startTime) / 2);
+        }
     }
 
     private void SetClipboardDate()

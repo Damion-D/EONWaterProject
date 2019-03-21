@@ -30,7 +30,7 @@ public class AudioScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayButtonSound();
+        
         
     }
 
@@ -62,19 +62,18 @@ public class AudioScript : MonoBehaviour
 
     public void PlayButtonSound()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        
             Button.clip = ButtonClick;
             Button.Play();
 
 
-        }
     }
 
     public void AudioCorrect()
     {
         Button.clip = Correct;
         Button.Play();
+        Debug.Log("Correct Audio playing");
     }
 
     public void AudioIncorrect()

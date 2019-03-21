@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour {
     public Color highlight;
 
 
+
     [SerializeField]
     Color basic;
     [SerializeField]
@@ -31,6 +32,7 @@ public class MenuManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+       
         Time.timeScale = 1;
         basic = icons[0].color;
         navOn = true;
@@ -38,6 +40,9 @@ public class MenuManager : MonoBehaviour {
         anim = this.GetComponent<Animation>();
         numOfSteps = Mathf.Round(1 / scrollBack.size);
         stepSize = 1 / (numOfSteps - 1);
+      
+
+    
 	}
 
     // Update is called once per frame
@@ -137,7 +142,12 @@ public class MenuManager : MonoBehaviour {
         {
             if(thing == selected && Array.IndexOf(icons, thing) < (int)numOfSteps)
             {
+
                 thing.color = highlight;
+
+
+  
+                
             } else if (Array.IndexOf(icons, thing) < (int)numOfSteps)
             {
                 thing.color = basic;

@@ -191,27 +191,32 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                     break;
 
                 case 9:
-                    ClipboardExit();
+                    clipboardKeyboard.gameObject.SetActive(false);
+                    step++;
                     break;
 
                 case 10:
+                    ClipboardExit();
+                    break;
+                
+                case 11:
                     DumpTrans();
                     break;
 
-                case 11:
+                case 12:
                     WaterFlash(true);
                     step++;
                     break;
 
-                case 12:
+                case 13:
                     SJSecondMove();
                     break;
 
-                case 13:
+                case 14:
                     SJSecondSwipe();
                     break;
 
-                case 14:
+                case 15:
                     End();
                     break;
             }
@@ -375,7 +380,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
             if (hitTrans.name == "Enter" && clipboardInput == Mathf.RoundToInt(sludgeLevels))
             {
-                clipboardKeyboard.gameObject.SetActive(false);
+                audioPlay.AudioCorrect();
+                waitTime += 1f;
 
                 sJCollider.enabled = true;
 
@@ -385,8 +391,14 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 step++;
             }
 
+            else if (hitTrans.name == "Enter" && clipboardInput != Mathf.RoundToInt(sludgeLevels))
+            {
+                audioPlay.AudioIncorrect();
+            }
+
             if (int.TryParse(hitTrans.name, out clipboardInput))
             {
+                audioPlay.PlayButtonSound();
                 TextMeshPro_reading[restarts].GetComponent<TMPro.TextMeshPro>().text = clipboardInput.ToString();
             }
         }

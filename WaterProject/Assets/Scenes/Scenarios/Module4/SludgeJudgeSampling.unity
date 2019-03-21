@@ -1563,7 +1563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e6f3803e45f5f984f8219d6edcdd0b18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3650,6 +3650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112f0b471909a204c91fe5699454b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 0
+  step: 0
   restarts: 0
   restarted: 1
   audioPlay: {fileID: 169277351}
@@ -3666,6 +3668,7 @@ MonoBehaviour:
   dumpIndicator: {fileID: 418992401}
   dumpPoint: {fileID: 259383274}
   dumpPartSystem: {fileID: 1120598573}
+  darkPlane: {fileID: 0}
   sludgeJudgeClipboard: {fileID: 1116598332331248480}
   TextMeshPro_date:
   - {fileID: 2117850151}
@@ -6987,7 +6990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 76ec2333cec25584685545df9d132335, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.578
+      value: 0.571
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 76ec2333cec25584685545df9d132335, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6995,7 +6998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 76ec2333cec25584685545df9d132335, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0444
+      value: -0.036
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 76ec2333cec25584685545df9d132335, type: 3}
       propertyPath: m_LocalRotation.x

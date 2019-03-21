@@ -235,6 +235,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         {
             sludgeLevels = Mathf.Floor(sludgeLevels);
         }*/
+
+       
+
         if (!restarted)
         {
             audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 1");

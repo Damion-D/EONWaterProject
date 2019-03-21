@@ -13,6 +13,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     bool scenarioHasStarted;
     int clipboardInput = 0;
 
+    [SerializeField] float waitTime;
+    [SerializeField] int step;
+    [Space]
     //If restarted, skips dialogue
     [SerializeField] int restarts;
     [SerializeField] bool restarted;
@@ -106,10 +109,6 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     //[SerializeField] Quaternion cbStartRot;
 
     CapsuleCollider sJCollider;
-
-
-    [SerializeField] float waitTime;
-    [SerializeField] int step;
 
 
     // Start is called before the first frame update
@@ -530,14 +529,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     {
         sludgeJudgeFlash.gameObject.SetActive(on);
     }
-
-    /*IEnumerator SludgeJudgeStory()
-    {
-        
-
-
-        
-    }*/
+    
 
     public void Restart()
     {

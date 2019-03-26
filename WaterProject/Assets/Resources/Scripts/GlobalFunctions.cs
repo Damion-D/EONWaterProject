@@ -27,7 +27,7 @@ public class GlobalFunctions : MonoBehaviour
         mainCam = Camera.main;
     }
 
-    public static bool SlideObjectHorizontal(Transform itemToMove, Transform pointToLockTo, Transform imageTarget, float speedMult, float maxDist, float activationDist)
+    public static bool SlideObjectHorizontal(Transform itemToMove, Transform pointToLockTo, Transform currentParent, float speedMult, float maxDist, float activationDist)
     {
         if (itemToMove.parent != pointToLockTo)
             itemToMove.parent = pointToLockTo;
@@ -46,7 +46,7 @@ public class GlobalFunctions : MonoBehaviour
 
         if(Vector2.Distance(new Vector2(itemToMove.position.x, itemToMove.position.z), new Vector2(pointToLockTo.position.x, pointToLockTo.position.z)) < activationDist)
         {
-            itemToMove.parent = imageTarget;
+            itemToMove.parent = currentParent;
             return true;
         }
         return false;

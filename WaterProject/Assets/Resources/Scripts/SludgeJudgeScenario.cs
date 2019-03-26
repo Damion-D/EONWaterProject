@@ -14,7 +14,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     int clipboardInput = 0;
 
     [SerializeField] float waitTime;
-    [SerializeField] int step;
+    [SerializeField] int step = -1;
     [Space]
     //If restarted, skips dialogue
     [SerializeField] int restarts;
@@ -22,6 +22,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     [SerializeField] AudioScript audioPlay;
     [SerializeField] Utility utilityScript;
+    [SerializeField] Transform imageTarget;
 
     [Header("Object References")]
     [SerializeField] Transform sludgeJudge;
@@ -76,6 +77,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] float dumpDist;
     [SerializeField] Vector2 sludgeAmount;
     [SerializeField] float sludgeLevels;
+    [SerializeField] float sJMoveSpeedMult;
+    [SerializeField] float sJMaxDistFromPoint;
 
     [Header("Animation Times")]
     [SerializeField] float sJDipTime;
@@ -153,6 +156,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             switch(step)
             {
                 case 0:
+                    GlobalFunctions.SetMainCam();
                     IntroOne();
                     break;
 
@@ -161,7 +165,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                     break;
 
                 case 2:
-                    WaterFlash(true);
+                    indicator.gameObject.SetActive(true);
                     step++;
                     break;
 
@@ -199,7 +203,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                     break;
 
                 case 11:
-                    WaterFlash(true);
+                    dumpIndicator.gameObject.SetActive(true);
                     step++;
                     break;
 
@@ -216,6 +220,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                     break;
             }
         }
+        GlobalFunctions.UpdatePrevMousePos();
     }
 
     void IntroOne()
@@ -251,7 +256,6 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             StartCoroutine(SludgeJudgeFocus());
             waitTime += audioPlay.Tracks[1].length;
         }
-        
         step++;
     }
 
@@ -259,8 +263,11 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     void SJFirstMove()
     {
         sJCollider.enabled = false;
+
+        
+
         //RaycastHit returns all the info from raycast detection
-        RaycastHit hit = GlobalFunctions.DetectConstantTouch();
+        /*RaycastHit hit = GlobalFunctions.DetectConstantTouch();
         if (hit.transform != null)
         {
             //If the object detected is the same as the tankWaterTop
@@ -273,8 +280,10 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             }
         }
         //Checks to see if the horizontal (no y) distance is less than the distance to insert
-        else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(insertionPoint.position.x, insertionPoint.position.z)) < insertionDist)
+        else */
+        if (GlobalFunctions.SlideObjectHorizontal(sludgeJudge, insertionPoint, imageTarget, sJMoveSpeedMult, sJMaxDistFromPoint, insertionDist))
         {
+
             //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
             sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
             sJSampledPoint.position = new Vector3(sludgeJudge.position.x, sJSampledPoint.position.y, sludgeJudge.position.z);
@@ -426,7 +435,10 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     void SJSecondMove()
     {
         sJCollider.enabled = false;
-        //RaycastHit returns all the info from raycast detection
+
+        
+
+        /*//RaycastHit returns all the info from raycast detection
         RaycastHit hit = GlobalFunctions.DetectConstantTouch();
         if (hit.transform != null)
         {
@@ -440,9 +452,11 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
             }
         }
         //Checks to see if the horizontal (no y) distance is less than the distance to insert
-        else if (Vector2.Distance(new Vector2(sludgeJudge.position.x, sludgeJudge.position.z), new Vector2(dumpPoint.position.x, dumpPoint.position.z)) < dumpDist)
+        else */
+        if (GlobalFunctions.SlideObjectHorizontal(sludgeJudge, dumpPoint, imageTarget, sJMoveSpeedMult, sJMaxDistFromPoint, dumpDist))
         {
             sJCollider.enabled = true;
+
 
             //Sets all animation points' horizontal position to be the same as the sludge judge so it can dip in the correct location
             sJDipPoint.position = new Vector3(sludgeJudge.position.x, sJDipPoint.position.y, sludgeJudge.position.z);
@@ -910,7 +924,9 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         {
             Debug.Log("Starting story");
             scenarioHasStarted = true;
-            StartCoroutine("SludgeJudgeStory");
+            //StartCoroutine("SludgeJudgeStory");
+            if (step < 0)
+                step = 0;
         }
     }
 }

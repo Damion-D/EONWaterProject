@@ -8,10 +8,7 @@ public class AudioScript : MonoBehaviour
     [SerializeField] int trackCount;
     [SerializeField] Camera ARCam;
     AudioSource Listen;
-    [SerializeField] AudioSource Button;
-    [SerializeField] AudioClip Incorrect;
-    [SerializeField] AudioClip Correct;
-    [SerializeField] AudioClip ButtonClick;
+ 
     [SerializeField] GameObject Clipboard;
 
     // Start is called before the first frame update
@@ -30,7 +27,7 @@ public class AudioScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayButtonSound();
+       
         
     }
 
@@ -60,29 +57,6 @@ public class AudioScript : MonoBehaviour
         Listen.UnPause();
     }
 
-    public void PlayButtonSound()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Button.clip = ButtonClick;
-            Button.Play();
-
-
-        }
-    }
-
-    public void AudioCorrect()
-    {
-        Button.clip = Correct;
-        Button.Play();
-    }
-
-    public void AudioIncorrect()
-    {
-        Button.clip = Incorrect;
-        Button.Play();
-
-    }
-
+   
 
 }

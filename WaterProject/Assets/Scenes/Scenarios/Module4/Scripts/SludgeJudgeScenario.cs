@@ -22,6 +22,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     [SerializeField] AudioScript audioPlay;
     [SerializeField] Utility utilityScript;
+    [SerializeField] ButtonAudio audioButton;
 
     [Header("Object References")]
     [SerializeField] Transform sludgeJudge;
@@ -239,7 +240,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
        
 
         if (!restarted)
-        {
+        { 
             audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 1");
             waitTime += audioPlay.Tracks[0].length;
         }
@@ -375,6 +376,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
             if (hitTrans.name == "Enter" && clipboardInput == Mathf.RoundToInt(sludgeLevels))
             {
+                audioButton.AudioCorrect();
                 clipboardKeyboard.gameObject.SetActive(false);
 
                 sJCollider.enabled = true;
@@ -385,8 +387,14 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
                 step++;
             }
 
+            else if (hitTrans.name == "Enter" && clipboardInput!= Mathf.RoundToInt(sludgeLevels))
+            {
+                audioButton.AudioIncorrect();
+            }
+
             if (int.TryParse(hitTrans.name, out clipboardInput))
             {
+                audioButton.ButtonClicked();
                 TextMeshPro_reading[restarts].GetComponent<TMPro.TextMeshPro>().text = clipboardInput.ToString();
             }
         }

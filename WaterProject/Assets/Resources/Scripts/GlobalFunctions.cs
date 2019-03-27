@@ -5,6 +5,7 @@ using UnityEngine;
 public class GlobalFunctions : MonoBehaviour
 {
     public static Camera mainCam;
+    public static Vector2 prevMousePos;
     public static Vector2 swipeDirection;
 
     public static bool swiping;
@@ -16,10 +17,45 @@ public class GlobalFunctions : MonoBehaviour
         mainCam = Camera.main;
     }
 
+    public static void UpdatePrevMousePos()
+    {
+        prevMousePos = Input.mousePosition;
+    }
+
+    public static void SetMainCam()
+    {
+        mainCam = Camera.main;
+    }
+
+
+    public static bool SlideObjectHorizontal(Transform itemToMove, Transform pointToLockTo, Transform currentParent, float speedMult, float maxDist, float activationDist)
+    {
+        if (itemToMove.parent != pointToLockTo)
+            itemToMove.parent = pointToLockTo;
+
+        pointToLockTo.LookAt(mainCam.transform);
+        pointToLockTo.forward = new Vector3(-pointToLockTo.forward.x, 0, -pointToLockTo.forward.z).normalized;
+
+        float moveDist = 0;
+        if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0))
+            moveDist = (Input.mousePosition.x - prevMousePos.x) * speedMult;
+
+        itemToMove.localPosition = new Vector3(itemToMove.localPosition.x + moveDist, itemToMove.localPosition.y, 0);
+
+        if (Mathf.Abs(itemToMove.localPosition.x) > maxDist)
+            itemToMove.localPosition = new Vector3(maxDist * Mathf.Sign(itemToMove.localPosition.x), itemToMove.localPosition.y, 0);
+
+        if (Vector2.Distance(new Vector2(itemToMove.position.x, itemToMove.position.z), new Vector2(pointToLockTo.position.x, pointToLockTo.position.z)) < activationDist)
+        {
+            itemToMove.parent = currentParent;
+            return true;
+        }
+        return false;
+    }
+
     //Takes a touch on the screen, and converts it into a raaycast into the scene
     public static RaycastHit DetectTouch(MonoBehaviour calledFrom, Vector2 swipeDistances)
     {
-        mainCam = Camera.main;
         RaycastHit hit = new RaycastHit();
 
         if (Input.GetMouseButtonDown(0))
@@ -42,7 +78,6 @@ public class GlobalFunctions : MonoBehaviour
     //Detects touches constantly rather than just when you first touch the screen
     public static RaycastHit DetectConstantTouch()
     {
-        mainCam = Camera.main;
         RaycastHit hit = new RaycastHit();
 
 

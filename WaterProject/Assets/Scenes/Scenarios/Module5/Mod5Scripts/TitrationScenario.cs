@@ -42,6 +42,8 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
     [Space]
     [Header("Material Refs")]
     [SerializeField] Material[] wSMats;
+    [SerializeField] Material lineSegment;
+    [SerializeField] Material lineSegmentFlash;
 
     [Space]
     [Header("Pause Menu")]
@@ -119,7 +121,7 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
                     break;
 
                 case 4:
-
+                    CurveDisplay5();
                     break;
 
                 case 5:
@@ -172,9 +174,9 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
     {
         //highlights whole curve, also starts anim coroutine
         StartCoroutine(DisplayCurve());
-        splitCurve[0].enabled = true;
-        splitCurve[1].enabled = true;
-        splitCurve[2].enabled = true;
+        splitCurve[0].material = lineSegmentFlash;
+        splitCurve[1].material = lineSegmentFlash;
+        splitCurve[2].material = lineSegmentFlash;
         waitTime += 5 + curveDisplayTime;
         step++;
     }
@@ -182,30 +184,40 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
     void CurveDisplay2()
     {
         //activates first part of curve, highlight
-        splitCurve[0].enabled = true;
-        splitCurve[1].enabled = false;
-        splitCurve[2].enabled = false;
+        splitCurve[0].material = lineSegmentFlash;
+        splitCurve[1].material = lineSegment;
+        splitCurve[2].material = lineSegment;
         waitTime += 5;
         step++;
     }
 
     void CurveDisplay3()
     {
-        //activates 3rd part of curve, highlight
-        splitCurve[0].enabled = false;
-        splitCurve[1].enabled = false;
-        splitCurve[2].enabled = true;
+        //activates 2rd part of curve, highlight
+        splitCurve[0].material = lineSegment;
+        splitCurve[1].material = lineSegmentFlash;
+        splitCurve[2].material = lineSegment;
         waitTime += 5;
         step++;
     }
 
     void CurveDisplay4()
     {
+        //activates 3rd part of curve, highlight
+        splitCurve[0].material = lineSegment;
+        splitCurve[1].material = lineSegment;
+        splitCurve[2].material = lineSegmentFlash;
+        waitTime += 5;
+        step++;
+    }
+
+    void CurveDisplay5()
+    {
         //shuts off whole curve
         StartCoroutine(HideCurve());
-        splitCurve[0].enabled = false;
-        splitCurve[1].enabled = false;
-        splitCurve[2].enabled = false;
+        splitCurve[0].material = lineSegment;
+        splitCurve[1].material = lineSegment;
+        splitCurve[2].material = lineSegment;
         waitTime += 5 + curveDisplayTime;
         step++;
     }

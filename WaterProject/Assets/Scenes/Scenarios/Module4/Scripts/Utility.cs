@@ -146,8 +146,8 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
         //Only resumes if the previous state was not tracking
         if ((newStatus == TrackableBehaviour.Status.TRACKED || newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED) && previousStatus == TrackableBehaviour.Status.NO_POSE)
         {
-            if (!waterSound.isPlaying)
-                waterSound.Play();
+            /*if (!waterSound.isPlaying)
+                waterSound.Play();*/
 
             tracking = true;
             /*for (int i = 0; i < components.transform.parent.childCount; i++)
@@ -183,7 +183,7 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
     {
         Time.timeScale = 0;
         audioScript.PauseAudio();
-        waterSound.Pause();
+        //waterSound.Pause();
     }
 
     //Resumes all paused functions
@@ -191,7 +191,7 @@ public class Utility : MonoBehaviour, ITrackableEventHandler {
     {
 
         audioScript.UnpauseAudio();
-        waterSound.UnPause();
+        //waterSound.UnPause();
         Time.timeScale = 1;
 
         /*//Turns the pause button on

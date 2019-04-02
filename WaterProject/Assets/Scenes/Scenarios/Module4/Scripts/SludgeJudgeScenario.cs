@@ -19,7 +19,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     //If restarted, skips dialogue
     [SerializeField] int restarts;
     [SerializeField] bool restarted;
-
+    [Space]
     [SerializeField] AudioScript audioPlay;
     [SerializeField] Utility utilityScript;
     [SerializeField] Transform imageTarget;
@@ -91,7 +91,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] float sJDumpReturnDelay;
 
     //Different points for the animations
-    [Header("Position Object References")]
+    [Header("Animation References")]
     [SerializeField] Transform sJDipPoint;
     [SerializeField] Transform sJSampledPoint;
     [SerializeField] Transform sJExaminePoint;

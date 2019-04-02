@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scenes\Scenarios\Module4\Scripts\LabelKeeper.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module4\Scripts\SludgeJudgeScenario.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module4\Scripts\Utility.cs" />
+    <Compile Include="Assets\Scenes\Scenarios\Module5\Mod5Scripts\TitrationScenario.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module5\Mod5Scripts\TrackingMarker.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

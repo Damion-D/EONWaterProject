@@ -1,0 +1,383 @@
+fileFormatVersion: 2
+guid: a73ea1c8af5a92e49b732ae24158ce16
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: node_id100
+    100004: node_id118
+    100006: node_id126
+    100008: node_id126 1
+    100010: node_id126 2
+    100012: node_id126 3
+    100014: node_id139
+    100016: node_id141
+    100018: node_id143
+    100020: node_id145
+    100022: node_id147
+    100024: node_id149
+    100026: node_id151
+    100028: node_id153
+    100030: node_id155
+    100032: node_id157
+    100034: node_id159
+    100036: node_id160
+    100038: node_id161
+    100040: node_id163
+    100042: node_id165
+    100044: node_id167
+    100046: node_id169
+    100048: node_id171
+    100050: node_id173
+    100052: node_id175
+    100054: node_id177
+    100056: node_id178
+    100058: node_id180
+    100060: node_id182
+    100062: node_id183
+    100064: node_id185
+    100066: node_id187
+    100068: node_id188
+    100070: node_id190
+    100072: node_id192
+    100074: node_id193
+    100076: node_id241
+    100078: node_id251
+    100080: node_id258
+    100082: node_id265
+    100084: node_id53
+    100086: node_id61
+    100088: node_id61 1
+    100090: node_id61 2
+    100092: node_id61 3
+    100094: node_id82
+    100096: node_id87
+    100098: node_id87 1
+    100100: node_id87 2
+    100102: node_id87 3
+    100104: node_id87 4
+    100106: root 1
+    400000: //RootNode
+    400002: node_id100
+    400004: node_id118
+    400006: node_id126
+    400008: node_id126 1
+    400010: node_id126 2
+    400012: node_id126 3
+    400014: node_id139
+    400016: node_id141
+    400018: node_id143
+    400020: node_id145
+    400022: node_id147
+    400024: node_id149
+    400026: node_id151
+    400028: node_id153
+    400030: node_id155
+    400032: node_id157
+    400034: node_id159
+    400036: node_id160
+    400038: node_id161
+    400040: node_id163
+    400042: node_id165
+    400044: node_id167
+    400046: node_id169
+    400048: node_id171
+    400050: node_id173
+    400052: node_id175
+    400054: node_id177
+    400056: node_id178
+    400058: node_id180
+    400060: node_id182
+    400062: node_id183
+    400064: node_id185
+    400066: node_id187
+    400068: node_id188
+    400070: node_id190
+    400072: node_id192
+    400074: node_id193
+    400076: node_id241
+    400078: node_id251
+    400080: node_id258
+    400082: node_id265
+    400084: node_id53
+    400086: node_id61
+    400088: node_id61 1
+    400090: node_id61 2
+    400092: node_id61 3
+    400094: node_id82
+    400096: node_id87
+    400098: node_id87 1
+    400100: node_id87 2
+    400102: node_id87 3
+    400104: node_id87 4
+    400106: root 1
+    2100000: Material_234
+    2100002: Material_228
+    2100004: Material_279
+    2100006: Material_281
+    2100008: Material_283
+    2100010: Material_285
+    2100012: Material_287
+    2100014: Material_163
+    2100016: Material_164
+    2100018: Material_231
+    2100020: Material_237
+    2100022: Material_159
+    2100024: Material_160
+    2100026: Material_161
+    2100028: Material_162
+    2100030: Material_165
+    2100032: Material_166
+    2100034: Material_167
+    2100036: Material_168
+    2100038: Material_169
+    2100040: Material_170
+    2100042: Material_171
+    2100044: Material_172
+    2100046: Material_173
+    2100048: Material_174
+    2100050: Material_175
+    2100052: Material_176
+    2100054: Material_177
+    2100056: Material_178
+    2100058: Material_179
+    2100060: Material_180
+    2100062: Material_181
+    2100064: Material_182
+    2100066: Material_102
+    2100068: Material_118
+    2100070: Material_107
+    2100072: Material_109
+    2100074: Material_111
+    2100076: Material_113
+    2100078: Material_115
+    2100080: Material_289
+    2100082: Material_291
+    2100084: Material_293
+    2100086: Material_295
+    2100088: Material_297
+    2100090: Material_277
+    2300000: node_id100
+    2300002: node_id118
+    2300004: node_id126
+    2300006: node_id126 1
+    2300008: node_id126 2
+    2300010: node_id126 3
+    2300012: node_id139
+    2300014: node_id141
+    2300016: node_id143
+    2300018: node_id145
+    2300020: node_id147
+    2300022: node_id149
+    2300024: node_id151
+    2300026: node_id153
+    2300028: node_id155
+    2300030: node_id157
+    2300032: node_id161
+    2300034: node_id163
+    2300036: node_id165
+    2300038: node_id167
+    2300040: node_id169
+    2300042: node_id171
+    2300044: node_id173
+    2300046: node_id175
+    2300048: node_id178
+    2300050: node_id180
+    2300052: node_id183
+    2300054: node_id185
+    2300056: node_id188
+    2300058: node_id190
+    2300060: node_id241
+    2300062: node_id251
+    2300064: node_id258
+    2300066: node_id265
+    2300068: node_id53
+    2300070: node_id61
+    2300072: node_id61 1
+    2300074: node_id61 2
+    2300076: node_id61 3
+    2300078: node_id82
+    2300080: node_id87
+    2300082: node_id87 1
+    2300084: node_id87 2
+    2300086: node_id87 3
+    2300088: node_id87 4
+    2300090: root 1
+    3300000: node_id100
+    3300002: node_id118
+    3300004: node_id126
+    3300006: node_id126 1
+    3300008: node_id126 2
+    3300010: node_id126 3
+    3300012: node_id139
+    3300014: node_id141
+    3300016: node_id143
+    3300018: node_id145
+    3300020: node_id147
+    3300022: node_id149
+    3300024: node_id151
+    3300026: node_id153
+    3300028: node_id155
+    3300030: node_id157
+    3300032: node_id161
+    3300034: node_id163
+    3300036: node_id165
+    3300038: node_id167
+    3300040: node_id169
+    3300042: node_id171
+    3300044: node_id173
+    3300046: node_id175
+    3300048: node_id178
+    3300050: node_id180
+    3300052: node_id183
+    3300054: node_id185
+    3300056: node_id188
+    3300058: node_id190
+    3300060: node_id241
+    3300062: node_id251
+    3300064: node_id258
+    3300066: node_id265
+    3300068: node_id53
+    3300070: node_id61
+    3300072: node_id61 1
+    3300074: node_id61 2
+    3300076: node_id61 3
+    3300078: node_id82
+    3300080: node_id87
+    3300082: node_id87 1
+    3300084: node_id87 2
+    3300086: node_id87 3
+    3300088: node_id87 4
+    3300090: root 1
+    4300000: node_id258
+    4300002: node_id241
+    4300004: node_id126
+    4300006: node_id126
+    4300008: node_id126
+    4300010: node_id126
+    4300012: node_id118
+    4300014: node_id147
+    4300016: node_id149
+    4300018: node_id251
+    4300020: node_id265
+    4300022: node_id139
+    4300024: node_id141
+    4300026: node_id143
+    4300028: node_id145
+    4300030: node_id151
+    4300032: node_id153
+    4300034: node_id155
+    4300036: node_id157
+    4300038: node_id161
+    4300040: node_id163
+    4300042: node_id165
+    4300044: node_id167
+    4300046: node_id169
+    4300048: node_id171
+    4300050: node_id173
+    4300052: node_id175
+    4300054: node_id178
+    4300056: node_id180
+    4300058: node_id183
+    4300060: node_id185
+    4300062: node_id188
+    4300064: node_id190
+    4300066: node_id82
+    4300068: node_id100
+    4300070: node_id87
+    4300072: node_id87
+    4300074: node_id87
+    4300076: node_id87
+    4300078: node_id87
+    4300080: node_id61
+    4300082: node_id61
+    4300084: node_id61
+    4300086: node_id61
+    4300088: node_id53
+    4300090: root
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

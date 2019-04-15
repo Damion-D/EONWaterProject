@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: a4dfb05169684b844a1541919de28e5a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bottle
+    100002: BottleCap
+    100004: Knob
+    100006: knobs
+    100008: KnobUpper
+    100010: MetalConnector
+    100012: Needle
+    100014: Pipet
+    100016: Tip
+    100018: //RootNode
+    100020: WallaceStandCorrectUV
+    400000: Bottle
+    400002: BottleCap
+    400004: Knob
+    400006: knobs
+    400008: KnobUpper
+    400010: MetalConnector
+    400012: Needle
+    400014: Pipet
+    400016: Tip
+    400018: //RootNode
+    400020: WallaceStandCorrectUV
+    2100000: Wallace
+    2100002: Knob
+    2100004: Pipet
+    2100006: Metal
+    2100008: Rubber
+    2100010: TransparentPlastic
+    2100012: CapPlastic
+    2100014: OpaquePlastic
+    2300000: Bottle
+    2300002: BottleCap
+    2300004: Knob
+    2300006: knobs
+    2300008: KnobUpper
+    2300010: MetalConnector
+    2300012: Needle
+    2300014: Pipet
+    2300016: Tip
+    2300018: WallaceStandCorrectUV
+    3300000: Bottle
+    3300002: BottleCap
+    3300004: Knob
+    3300006: knobs
+    3300008: KnobUpper
+    3300010: MetalConnector
+    3300012: Needle
+    3300014: Pipet
+    3300016: Tip
+    3300018: WallaceStandCorrectUV
+    4300000: WallaceStandCorrectUV
+    4300002: KnobUpper
+    4300004: knobs
+    4300006: Pipet
+    4300008: Knob
+    4300010: Bottle
+    4300012: Tip
+    4300014: MetalConnector
+    4300016: BottleCap
+    4300018: Needle
+    7400000: Squeeze
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CapPlastic
+    second: {fileID: 2100000, guid: c9a2291de461d4940b71cca1d3617048, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knob
+    second: {fileID: 2100000, guid: 948d5645915a04441b25d1a14c10e703, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 8fb8b535d7a8660469ca5b5333a15daf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OpaquePlastic
+    second: {fileID: 2100000, guid: f9a37af681892ec4b92c0ae79dab9253, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pipet
+    second: {fileID: 2100000, guid: 1e593971763cd0245ad672fa8fd91d38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rubber
+    second: {fileID: 2100000, guid: 7a99345e09d04b1488bd9ef8c7cc9eff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TransparentPlastic
+    second: {fileID: 2100000, guid: dfac9442b7081874eb04d992a3daab80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallace
+    second: {fileID: 2100000, guid: 61e408296ba5e3d4a96d09110dd11c69, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Squeeze
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

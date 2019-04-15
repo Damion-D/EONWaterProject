@@ -5,6 +5,7 @@ SceneListBegin?
 Assets/Scenes/SplashScreen.unity
 Assets/Scenes/Menu.unity
 Assets/Scenes/Scenarios/Module4/SludgeJudgeSampling.unity
+Assets/Scenes/Scenarios/Module5/Titrator.unity
 SceneListEnd?
 71bb6a6b6c8f052f948db64c7dd3ca4f VuforiaScripts.dll:.BoundingBoxRenderer
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -93,6 +94,8 @@ fc108ce7d98c40ac0907e8ca7f500c76 UnityEngine.UI.dll:UnityEngine.UI.Text
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 cf30a6f1d83674a8c1f305a2e99430a5 Assembly-CSharp.dll:.PartID
+b4298e0dc4eadd4709344c4d809b0ff9 Assembly-CSharp.dll:.TitrationScenario
+417c4efc18bb6d9d52543b135cf34824 Assembly-CSharp.dll:.Clipboard
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 06f0fef534ca4c1d6064fd77a26bf722 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 780e8f682b3221346c034a6712a0fd25 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -106,6 +109,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.G
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GlobalFunctions
+d891874f1cccf1db13e149b576e77fef Assembly-CSharp.dll:.ButtonAudio
 00274a21279f5cb831ce20f895049e38 Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
 60a887ef1d086e192ac3e09363f9d7d4 Assembly-CSharp.dll:.TurnOffRedoButton
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -206,18 +210,19 @@ cd67f3e1e9ccac6db86c1564cea5a827 Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 fbbf64dcbe0662e3eda1dec45ea8f895 Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 71bb6a6b6c8f052f948db64c7dd3ca4f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
 9e438afcececf2cd5784440112a349c2 Assembly-CSharp.dll:.CameraDepthTextureMode
+217e31467c69245e18e582f8e4d9a3b3 Assembly-CSharp.dll:.DropperDrag
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MySceneLoader
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 3ee8d5ec6a3e0a1ea2a0b71fb359f470 Assembly-CSharp.dll:.GifPlayer
 ab2eae4e922e3ced35586ea39da99a9e Assembly-CSharp.dll:.FindAllScripts
 3375c3d749f8f4cad889721b431bdc27 Assembly-CSharp.dll:TMPro.Examples.CameraController
-1384831e6adfd02250c5fb35ab91ab8a Assembly-CSharp.dll:.SludgeJudgeScenario
+bd8bb93b20e13b42571dce333a2b8078 Assembly-CSharp.dll:.SludgeJudgeScenario
 e63944317d2f5958e31963668bb29158 Assembly-CSharp.dll:TMPro.Examples.VertexJitter
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.Analytics.Editor.dll:UnityEditor.Analytics.AnalyticsEventTrackerEditor
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 a19ecf7d241333afd80a3f0bbf64a761 Assembly-CSharp.dll:.Utility
 e873958e31c7c0ca80713ba64d39b80c Assembly-CSharp.dll:.FlowManager
-84453ccc21458c02b80670ab86ffc890 Assembly-CSharp.dll:.AudioScript
+cacd880c9799127ad8ce395539d6ef0f Assembly-CSharp.dll:.AudioScript
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.BlendShape
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
 3cae62e09a50c5d5aae8d0536b3d8fde Assembly-CSharp.dll:.ChatController
@@ -281,9 +286,11 @@ e63944317d2f5958e31963668bb29158 Assembly-CSharp.dll:TMPro.Examples.VertexShakeB
 bd3f0ca738703903e759f77536ed74fd Assembly-CSharp.dll:TMPro.Examples.TMP_UiFrameRateCounter
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:TMPro.Examples.VertexColorCycler
 e63944317d2f5958e31963668bb29158 Assembly-CSharp.dll:TMPro.Examples.VertexZoom
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.TrackingMarker
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 5aaeed2aba8c49b29d46c09e2ad7ac35 Assembly-CSharp.dll:.EventManager
 e80c1450883443c68d6c2dade213536f Assembly-CSharp.dll:TMPro.Examples.TMPro_InstructionOverlay
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.WaterDropScript
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:TMPro.Examples.TeleType
 c12f6929b034322884ced721fca65b10 Assembly-CSharp.dll:TMPro.Examples.TextMeshProFloatingText
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
@@ -363,3 +370,4 @@ cd67f3e1e9ccac6db86c1564cea5a827 Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 69167579cf7fcbb2676fc1e675963dcd Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 fbbf64dcbe0662e3eda1dec45ea8f895 Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 71bb6a6b6c8f052f948db64c7dd3ca4f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
+4d98ebbf99a4b6181c27bb69d4f1854d Assembly-CSharp.dll:.PipetteSqueeze

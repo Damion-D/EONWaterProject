@@ -39,8 +39,6 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [SerializeField] Transform dumpPoint;
     [SerializeField] Transform dumpPartSystem;
 
-    [SerializeField] UnityEngine.UI.Image darkPlane;
-
     [Space]
     [Header("Clipboard References")]
 
@@ -55,6 +53,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     [Space]
     [Header("Material Refs")]
     [SerializeField] Material[] sJMats;
+
+    [SerializeField] Material darkPlane;
 
     [Space]
     [Header("Pause Menu")]
@@ -92,6 +92,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     //Different points for the animations
     [Header("Animation References")]
+    [SerializeField] Transform sJExplainPoint;
     [SerializeField] Transform sJDipPoint;
     [SerializeField] Transform sJSampledPoint;
     [SerializeField] Transform sJExaminePoint;
@@ -139,6 +140,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
         SetStartPositions();
 
+        darkPlane.color = new Color(darkPlane.color.r, darkPlane.color.g, darkPlane.color.b, 0);
 
         //hides the clipboard at the beginning
         HideClipboard();
@@ -260,7 +262,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         if(!restarted)
         {
             StartCoroutine(SludgeJudgeFocus());
-            waitTime += audioPlay.Tracks[1].length;
+            waitTime += audioPlay.Tracks[1].length + 4;
         }
         
         step++;
@@ -347,6 +349,8 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
 
     void ClipboardTrans()
     {
+        StartCoroutine(FadeDarkPlane(1));
+
         sludgeSampleFlash.gameObject.SetActive(true);
 
         //write function -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -400,6 +404,7 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         {
             HideClipboard();
 
+            StartCoroutine(FadeDarkPlane(0));
 
             Debug.Log("Sludge judge tapped");
             //Starts the coroutine to return the sludge judge and tank to normalorSeconds(sJDipTime + sampleDialogeTime + sJSampleTime + sJExamineTransTime + sJReturnDelay);
@@ -560,6 +565,11 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         while(true)
         {
             darkPlane.color = Color.Lerp(darkPlane.color, new Color(darkPlane.color.r, darkPlane.color.g, darkPlane.color.b, opacity), (Time.time - startTime) / 2);
+
+            if(Time.time - startTime >= 2)
+                break;
+
+            yield return null;
         }
     }
 
@@ -615,14 +625,15 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
     //Focuses on Sludge Judge, then returns to normal
     IEnumerator SludgeJudgeFocus()
     {
+        StartCoroutine(FadeDarkPlane(1));
         float timeStart = Time.time;
         float currentTime;
         while (true)
         {
             currentTime = Time.time - timeStart;
-            sludgeJudge.position = Vector3.Lerp(sJSampledPoint.position, sJExaminePoint.position, currentTime / sJExamineTransTime);
-            sludgeJudge.localScale = Vector3.Lerp(sJSampledPoint.localScale, sJExaminePoint.localScale, currentTime / sJExamineTransTime);
-            sludgeJudge.rotation = Quaternion.Lerp(sJSampledPoint.rotation, sJExaminePoint.rotation, currentTime / sJExamineTransTime);
+            sludgeJudge.position = Vector3.Lerp(sJSampledPoint.position, sJExplainPoint.position, currentTime / sJExamineTransTime);
+            sludgeJudge.localScale = Vector3.Lerp(sJSampledPoint.localScale, sJExplainPoint.localScale, currentTime / sJExamineTransTime);
+            sludgeJudge.rotation = Quaternion.Lerp(sJSampledPoint.rotation, sJExplainPoint.rotation, currentTime / sJExamineTransTime);
 
 
             mainTank.position = Vector3.Lerp(tankStartPoint, tankShrunkPoint.position, currentTime / sJExamineTransTime);
@@ -640,16 +651,18 @@ public class SludgeJudgeScenario : MonoBehaviour, ITrackableEventHandler
         if (!restarted)
         {
             audioPlay.PlayAudio(); Debug.Log("AUDIO CLIP 2");
-            yield return new WaitForSeconds(audioPlay.Tracks[1].length);
+            yield return new WaitForSeconds(audioPlay.Tracks[1].length - 2);
         }
+
+        StartCoroutine(FadeDarkPlane(0));
 
         timeStart = Time.time;
         while (true)
         {
             currentTime = Time.time - timeStart;
-            sludgeJudge.position = Vector3.Lerp(sJExaminePoint.position, sJSampledPoint.position, currentTime / sJExamineTransTime);
-            sludgeJudge.localScale = Vector3.Lerp(sJExaminePoint.localScale, sJSampledPoint.localScale, currentTime / sJExamineTransTime);
-            sludgeJudge.rotation = Quaternion.Lerp(sJExaminePoint.rotation, sJSampledPoint.rotation, currentTime / sJExamineTransTime);
+            sludgeJudge.position = Vector3.Lerp(sJExplainPoint.position, sJSampledPoint.position, currentTime / sJExamineTransTime);
+            sludgeJudge.localScale = Vector3.Lerp(sJExplainPoint.localScale, sJSampledPoint.localScale, currentTime / sJExamineTransTime);
+            sludgeJudge.rotation = Quaternion.Lerp(sJExplainPoint.rotation, sJSampledPoint.rotation, currentTime / sJExamineTransTime);
 
 
             mainTank.position = Vector3.Lerp(tankShrunkPoint.position, tankStartPoint, currentTime / sJExamineTransTime);

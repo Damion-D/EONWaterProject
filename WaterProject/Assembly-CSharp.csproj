@@ -66,6 +66,7 @@
     <Compile Include="Assets\Resources\Scripts\AssemblyStory.cs" />
     <Compile Include="Assets\Resources\Scripts\BlendShape.cs" />
     <Compile Include="Assets\Resources\Scripts\ClipboardScript.cs" />
+    <Compile Include="Assets\Resources\Scripts\DropperDrag.cs" />
     <Compile Include="Assets\Resources\Scripts\EventManager.cs" />
     <Compile Include="Assets\Resources\Scripts\FindAllScripts.cs" />
     <Compile Include="Assets\Resources\Scripts\Flow.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\Resources\Scripts\TurnOffRedoButton.cs" />
     <Compile Include="Assets\Resources\Scripts\TurnOffTools.cs" />
     <Compile Include="Assets\Resources\Scripts\UIAudioPlayer.cs" />
+    <Compile Include="Assets\Resources\Scripts\WaterDropScript.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module4\Scripts\AudioScript.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module4\Scripts\LabelKeeper.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module4\Scripts\SludgeJudgeScenario.cs" />

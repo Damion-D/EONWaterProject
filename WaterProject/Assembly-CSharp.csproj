@@ -60,11 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ButtonAudio.cs" />
     <Compile Include="Assets\Resources\Models\MainTank\CameraDepthTextureMode.cs" />
     <Compile Include="Assets\Resources\Scripts\ARSetupStory.cs" />
     <Compile Include="Assets\Resources\Scripts\AssemblyStory.cs" />
     <Compile Include="Assets\Resources\Scripts\BlendShape.cs" />
+    <Compile Include="Assets\Resources\Scripts\ButtonAudio.cs" />
     <Compile Include="Assets\Resources\Scripts\ClipboardScript.cs" />
     <Compile Include="Assets\Resources\Scripts\DropperDrag.cs" />
     <Compile Include="Assets\Resources\Scripts\EventManager.cs" />
@@ -95,6 +95,8 @@
     <Compile Include="Assets\Scenes\Scenarios\Module5\Clipboard.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module5\Mod5Scripts\TitrationScenario.cs" />
     <Compile Include="Assets\Scenes\Scenarios\Module5\Mod5Scripts\TrackingMarker.cs" />
+    <Compile Include="Assets\Scenes\Scenarios\Module6\Scripts\pHAndDOScenario.cs" />
+    <Compile Include="Assets\SetupClipboard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

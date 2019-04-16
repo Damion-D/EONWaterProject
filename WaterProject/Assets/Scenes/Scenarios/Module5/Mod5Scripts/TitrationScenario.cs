@@ -74,17 +74,17 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
 
     [Space]
     [Header("Clipboard References")]
-    [SerializeField] Transform[] textMeshPro_Row;
+    [SerializeField] public Transform[] textMeshPro_Row;
     [Space]
-    [SerializeField] Transform[] textMeshPro_date;
-    [SerializeField] Transform[] textMeshPro_time;
-    [SerializeField] Transform[] textMeshPro_freeChlorine;
-    [SerializeField] Transform[] textMeshPro_totalChlorine;
-    [SerializeField] Transform[] textMeshPro_freeToTotal;
-    [SerializeField] Transform[] textMeshPro_monoChlorine;
-    [SerializeField] Transform[] textMeshPro_diChlorine;
-    [SerializeField] Transform[] textMeshPro_monoToTotal;
-    [SerializeField] Transform[] textMeshPro_Ammonia;
+    [SerializeField] public Transform[] textMeshPro_date;
+    [SerializeField] public Transform[] textMeshPro_time;
+    [SerializeField] public Transform[] textMeshPro_freeChlorine;
+    [SerializeField] public Transform[] textMeshPro_totalChlorine;
+    [SerializeField] public Transform[] textMeshPro_freeToTotal;
+    [SerializeField] public Transform[] textMeshPro_monoChlorine;
+    [SerializeField] public Transform[] textMeshPro_diChlorine;
+    [SerializeField] public Transform[] textMeshPro_monoToTotal;
+    [SerializeField] public Transform[] textMeshPro_Ammonia;
 
     [Space]
     [Header("Material Refs")]
@@ -191,6 +191,9 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
     void Start()
     {
         GlobalFunctions.SetMainCam();
+
+        totalText.color = new Color(0, 0, 0, 1);
+        diText.color = new Color(0, 0, 0, 1);
 
         pipetValueContainer = totalText.transform.parent;
 
@@ -716,7 +719,7 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
         chlorineTotal = Mathf.Round(chlorineTotal * 100) / 100;
         chlorineDi = Mathf.Round(chlorineDi * 100) / 100;
 
-        waterLevel = Mathf.RoundToInt(chlorineTotal * 200);
+        waterLevel = chlorineTotal;
         
         StartCoroutine(Hide2MLBottle());
     }
@@ -737,9 +740,13 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
             //tells the user how fast the water is moving through the cathod tube
             Debug.Log("Speed increase: " + needleSpeed);
             //subtracts the water level int each time the button is pressed
-            waterLevel -= 2;
+            waterLevel -= Time.deltaTime / 4;
             //displays the level for testing purposes
             Debug.Log(waterLevel);
+
+            pipetteWater.localScale = new Vector3(pipetteWater.localScale.x, pipetteWater.localScale.y - (Time.deltaTime / 4), pipetteWater.localScale.z);
+            if (pipetteWater.localScale.y <= 0)
+                pipetteWater.localScale = new Vector3(1, pipetteWater.localScale.y + 1, 1);
 
             PipetKnobFlash(false);
         }
@@ -772,13 +779,14 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
                 PipetKnobFlash(true);
         }
 
-        totalText.text = (Mathf.Round(Mathf.Lerp(chlorineTotal, 0, waterLevel / (chlorineTotal * 200)) * 100) / 100).ToString() + " (Total)";
+        totalText.text = (Mathf.Round(Mathf.Lerp(chlorineTotal, 0, waterLevel / chlorineTotal) * 100) / 100).ToString() + " (Total)";
+        
 
-        if(waterLevel <= 0)
+        if (waterLevel <= 0)
         {
-            waterLevel = Mathf.RoundToInt(chlorineDi * 200);
+            waterLevel = chlorineDi;
             step++;
-
+            UpperKnobFlash(false);
             StartCoroutine(Display2MLBottle());
             waitTime += 3;
         }
@@ -822,9 +830,14 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
             //tells the user how fast the water is moving through the cathod tube
             Debug.Log("Speed increase: " + needleSpeed);
             //subtracts the water level int each time the button is pressed
-            waterLevel -= 2;
+            waterLevel -= Time.deltaTime / 4;
             //displays the level for testing purposes
             Debug.Log(waterLevel);
+
+
+            pipetteWater.localScale = new Vector3(pipetteWater.localScale.x, pipetteWater.localScale.y - (Time.deltaTime / 4), pipetteWater.localScale.z);
+            if (pipetteWater.localScale.y <= 0)
+                pipetteWater.localScale = new Vector3(1, pipetteWater.localScale.y + 1, 1);
 
             PipetKnobFlash(false);
         }
@@ -860,12 +873,13 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
                 PipetKnobFlash(true);
         }
 
-        diText.text = (Mathf.Round(Mathf.Lerp(chlorineDi, 0, waterLevel / (chlorineDi * 200)) * 100) / 100).ToString() + " (Di)";
+        diText.text = (Mathf.Round(Mathf.Lerp(chlorineDi, 0, waterLevel / chlorineDi) * 100) / 100).ToString() + " (Di)";
 
         if (waterLevel <= 0)
         {
             StartCoroutine(Hide2MLBottle());
             step++;
+            UpperKnobFlash(false);
             waitTime += 3;
         }
     }
@@ -874,6 +888,8 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
     void HideTitrator()
     {
         pipetValueContainer.transform.parent = clipboardPivot;
+        pipetValueContainer.transform.localPosition = new Vector3(0.216f, 0.133f, -0.266f);
+        pipetValueContainer.transform.localEulerAngles = new Vector3(-65, -180, 0);
         StartCoroutine(ShrinkTitrator());
         //titrator.localScale = Vector3.zero;
         //waterSample.localScale = Vector3.zero;
@@ -913,6 +929,9 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
         currentReading_str = "Total";
         currentReading_int = chlorineTotal;
 
+        totalText.color = new Color(0, 0, 0, 1);
+        diText.color = new Color(0, 0, 0, 0.25f);
+
         step++;
     }
 
@@ -922,6 +941,9 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
         currentReading_str = "Di";
         currentReading_int = chlorineDi;
 
+        totalText.color = new Color(0, 0, 0, 0.25f);
+        diText.color = new Color(0, 0, 0, 1);
+
         //once clock hits 0, add a step and reset clock
         step++;
         //pause for audio
@@ -929,7 +951,6 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
 
     void ClipboardKeypadInput()
     {
-
         RaycastHit hit = GlobalFunctions.DetectTouch(this);
 
         Debug.Log(hit.transform);
@@ -979,6 +1000,7 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
                             break;
                     }
                 }
+                numbersInputted = 0;
 
                 //once clock hits 0, add a step and reset clock
                 step++;
@@ -1025,7 +1047,7 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
                         break;
                 }
 
-                numbersInputted += 1;
+                numbersInputted++;
                 if (numbersInputted > 2)
                     numbersInputted = 0;
             }
@@ -1034,6 +1056,8 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
 
     void SetChlorineMonoCount()
     {
+        totalText.color = new Color(0, 0, 0, 1);
+        diText.color = new Color(0, 0, 0, 1);
         //rounds the chlorineDi float
         chlorineMono = chlorineTotal - chlorineDi;
         chlorineMono = Mathf.Round(chlorineMono * 100f) / 100f;
@@ -1077,7 +1101,18 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
         
 
         restartButton.gameObject.SetActive(false);
-        
+
+        currentPipetteAmount = 0;
+        pipetteWater.localScale = new Vector3(1, 0, 1);
+
+        clipboard.transform.localScale = Vector3.one * 0.001f;
+        clipboardKeyboard.gameObject.SetActive(false);
+
+        pipetValueContainer.localPosition = Vector3.zero;
+        pipetValueContainer.localEulerAngles = Vector3.zero;
+        pipetValueContainer.localScale = Vector3.one;
+
+        waterSample.localPosition = new Vector3(0.266f, 0.173f, 0.272f);
 
         pauseButton.SetActive(true);
         pauseMenu.SetActive(false);
@@ -1239,14 +1274,14 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
     {
         return DateTime.Now;
     }
+
     private static DateTime realTime()
     {
         return DateTime.Now;
 
     }
 
-
-
+    
     void AngleTitrator(float newAngle, float changeRate)
     {
         titratorAngleOffset = Mathf.Lerp(titratorAngleOffset, newAngle, changeRate);
@@ -1292,24 +1327,7 @@ public class TitrationScenario : MonoBehaviour, ITrackableEventHandler
             yield return null;
         }
     }
-
-
-    /*IEnumerator AngleTitrator(float newAngle, float turnTime)
-    {
-        float startTime = Time.time;
-        float currentTime;
-        float startAngle = titratorAngleOffset;
-        while(true)
-        {
-            currentTime = Time.time - startTime;
-            titratorAngleOffset = Mathf.Lerp(startAngle, newAngle, currentTime / turnTime);
-            if (currentTime >= turnTime)
-                break;
-            yield return null;
-        }
-    }*/
-
-
+    
     IEnumerator ExpandTitrator()
     {
 

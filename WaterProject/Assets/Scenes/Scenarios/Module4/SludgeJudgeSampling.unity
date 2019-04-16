@@ -3545,7 +3545,7 @@ MonoBehaviour:
   waitTime: 0
   step: -1
   restarts: 0
-  restarted: 0
+  restarted: 1
   audioPlay: {fileID: 169277351}
   utilityScript: {fileID: 0}
   imageTarget: {fileID: 1785575261}
